@@ -1,9 +1,13 @@
 import { Notifications } from 'expo';
 import React from 'react';
 import { StackNavigator } from 'react-navigation';
-
+import { connect } from 'react-redux'
 import MainTabNavigator from './MainTabNavigator';
+import Login from '../screens/LoginScreen'
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
+import { GET_FURRYS } from '../Reducers/furry'
+import * as firebase from 'firebase'
+
 
 const RootStackNavigator = StackNavigator(
   {
@@ -20,9 +24,10 @@ const RootStackNavigator = StackNavigator(
   }
 );
 
-export default class RootNavigator extends React.Component {
+class RootNavigator extends React.Component {
   componentDidMount() {
     this._notificationSubscription = this._registerForPushNotifications();
+    this.props.getFurrys()
   }
 
   componentWillUnmount() {
@@ -30,7 +35,8 @@ export default class RootNavigator extends React.Component {
   }
 
   render() {
-    return <RootStackNavigator />;
+     return <Login/>
+    // <RootStackNavigator />;
   }
 
   _registerForPushNotifications() {
@@ -48,3 +54,10 @@ export default class RootNavigator extends React.Component {
     console.log(`Push notification ${origin} with data: ${JSON.stringify(data)}`);
   };
 }
+
+const mapDispatchToProps = (dispatch)=>({
+    getFurrys:()=>dispatch(GET_FURRYS())
+  }
+)
+
+export default connect(null, mapDispatchToProps)(RootNavigator)
