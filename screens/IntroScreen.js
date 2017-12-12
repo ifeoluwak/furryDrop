@@ -1,29 +1,36 @@
-import React, { Component } from 'react';
-import { StyleSheet, Text, View, Image } from 'react-native';
-import Swiper from 'react-native-swiper';
+import React, { Component } from 'react'
+import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
+import { Button } from 'native-base'
+import Swiper from 'react-native-swiper'
 import { Asset } from 'expo'
 
 var slide1 = require('../assets/images/slide1.jpeg')
 var slide2 = require('../assets/images/slide2.jpeg')
 var slide3 = require('../assets/images/slide3.jpeg')
 
+slides = [
+    {title: 'Going On A Trip & Can\'t Take Along Your Pet?', image: slide1},
+    {title: 'Drop Your Pets In Loving Homes With Pet Lovers', image: slide2},
+    {title: 'Earn A Little Cash Caring For Pets You Love', image: slide3}
+]
+
 
 class Intro extends Component {
     render(){
         return (
-            <Swiper style={styles.wrapper} showsButtons={true}>
-            <Image source={slide1} style={{ flex: 1, alignSelf: 'stretch', width: undefined, height: undefined }}/>
-            <View style={styles.slide1}>
-              <Text style={styles.text}>Hello Swiper</Text>
+         <Swiper showsButtons={true}>
+            {slides.map((slide, i)=>(
+
+            <View style={styles.slide} key={i}>
+                <Text style={styles.texttop}>{slide.title}</Text>
+                <Image source={slide.image} style={styles.img}/>
+                <TouchableOpacity style={styles.skip} onPress={()=>{}}>
+                    <Text style={styles.skiptext}>SKIP</Text>
+                </TouchableOpacity>
             </View>
-            <View style={styles.slide2}>
-            <Image source={slide2} style={{ flex: 1, alignSelf: 'stretch', width: undefined, height: undefined }}/>
-              <Text style={styles.text}>Beautiful</Text>
-            </View>
-            <View style={styles.slide3}>
-            <Image source={slide3} style={{ flex: 1, alignSelf: 'stretch', width: undefined, height: undefined }}/>
-              <Text style={styles.text}>And simple</Text>
-            </View>
+
+            ))}
+
           </Swiper>
         )
     }
@@ -35,30 +42,38 @@ export default Intro;
 
 
 var styles = StyleSheet.create({
-    wrapper: {
-    },
-    slide1: {
+    slide: {
       flex: 1,
       justifyContent: 'center',
       alignItems: 'center',
-      backgroundColor: '#9DD6EB',
+      backgroundColor: '#000',
     },
-    slide2: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#97CAE5',
-    },
-    slide3: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: '#92BBD9',
-    },
-    text: {
+    texttop: {
       color: '#fff',
-      fontSize: 30,
+      lineHeight: 60,
+      fontSize: 32,
       fontWeight: 'bold',
+      position: 'absolute',
+      top: 30
     },
+    skip: {
+        backgroundColor: '#fff',
+        width: 250,
+        borderRadius: 30,
+        padding: 20,
+        position: 'absolute',
+        bottom: 75
+    },
+    skiptext: {
+        textAlign: 'center',
+        fontWeight: 'bold'
+    },
+    img: { 
+        flex: 1,
+        alignSelf: 'stretch',
+        width: undefined,
+        height: undefined,
+        resizeMode: 'contain'
+    }
     
   })
