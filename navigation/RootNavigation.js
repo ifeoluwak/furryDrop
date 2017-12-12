@@ -4,6 +4,7 @@ import { StackNavigator } from 'react-navigation';
 import { connect } from 'react-redux'
 import MainTabNavigator from './MainTabNavigator';
 import Login from '../screens/LoginScreen'
+import Intro from '../screens/IntroScreen'
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
 import { GET_FURRYS, GET_MY_FURRYS } from '../Reducers/furry'
 import * as firebase from 'firebase'
@@ -48,7 +49,8 @@ class RootNavigator extends React.Component {
   }
 
   render() {
-     return this.state.loggedIn?<RootStackNavigator />:<Login/>
+     return <Intro/>
+     //this.state.loggedIn?<RootStackNavigator />:<Login/>
   }
 
   _registerForPushNotifications() {
