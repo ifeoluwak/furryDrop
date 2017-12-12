@@ -17,7 +17,7 @@ var Person = t.struct({
   rememberMe: t.Boolean        // a boolean
 });
 
-export default class LinksScreen extends React.Component {
+export default class EditScreen extends React.Component {
   static navigationOptions = {
     title: 'Links',
   };

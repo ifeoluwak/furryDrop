@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import MainTabNavigator from './MainTabNavigator';
 import Login from '../screens/LoginScreen'
 import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
-import { GET_FURRYS } from '../Reducers/furry'
+import { GET_FURRYS, GET_MY_FURRYS } from '../Reducers/furry'
 import * as firebase from 'firebase'
 
 
@@ -25,9 +25,22 @@ const RootStackNavigator = StackNavigator(
 );
 
 class RootNavigator extends React.Component {
+  state = {
+    loggedIn : false
+  }
   componentDidMount() {
     this._notificationSubscription = this._registerForPushNotifications();
+    // Listen for authentication state to change.
+  firebase.auth().onAuthStateChanged((user) => {
+    if (user != null) {
+      console.log("We are authenticated now!");
+      this.setState({loggedIn: true})
+    }
+
+  });
+
     this.props.getFurrys()
+    this.props.getMyFurrys()
   }
 
   componentWillUnmount() {
@@ -35,8 +48,7 @@ class RootNavigator extends React.Component {
   }
 
   render() {
-     return <Login/>
-    // <RootStackNavigator />;
+     return this.state.loggedIn?<RootStackNavigator />:<Login/>
   }
 
   _registerForPushNotifications() {
@@ -56,7 +68,8 @@ class RootNavigator extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch)=>({
-    getFurrys:()=>dispatch(GET_FURRYS())
+    getFurrys:()=>dispatch(GET_FURRYS()),
+    getMyFurrys:()=>dispatch(GET_MY_FURRYS())
   }
 )
 
