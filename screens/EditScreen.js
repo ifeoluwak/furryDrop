@@ -22,6 +22,8 @@ export default class EditScreen extends React.Component {
     title: 'Links',
   };
 
+  
+
 
   onPress =  () => {
     // call getValue() to get the values of the form
@@ -33,6 +35,7 @@ export default class EditScreen extends React.Component {
 
 
   render() {
+    console.log(this.props)
     return (
       <ScrollView style={styles.container}>
         <Form

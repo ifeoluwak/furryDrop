@@ -7,10 +7,12 @@ import { Asset } from 'expo'
 var slide1 = require('../assets/images/slide1.jpeg')
 var slide2 = require('../assets/images/slide2.jpeg')
 var slide3 = require('../assets/images/slide3.jpeg')
+var slide4 = require('../assets/images/slide4.jpeg')
 
 slides = [
     {title: 'Going On A Trip & Can\'t Take Along Your Pet?', image: slide1},
     {title: 'Drop Your Pets In Loving Homes With Pet Lovers', image: slide2},
+    {title: 'Wanna Take Your Pets For A Walk, But Short On Time?', image: slide4},
     {title: 'Earn A Little Cash Caring For Pets You Love', image: slide3}
 ]
 
@@ -18,13 +20,13 @@ slides = [
 class Intro extends Component {
     render(){
         return (
-         <Swiper showsButtons={true}>
+         <Swiper showsButtons={true} dotColor={'#fff'} activeDotColor={'rgba(255,255,255,0.4)'} showsButtons={false}>
             {slides.map((slide, i)=>(
 
             <View style={styles.slide} key={i}>
                 <Text style={styles.texttop}>{slide.title}</Text>
                 <Image source={slide.image} style={styles.img}/>
-                <TouchableOpacity style={styles.skip} onPress={()=>{}}>
+                <TouchableOpacity style={styles.skip} onPress={()=>this.props.navigation.navigate('Main')} title='login with facebook'>
                     <Text style={styles.skiptext}>SKIP</Text>
                 </TouchableOpacity>
             </View>

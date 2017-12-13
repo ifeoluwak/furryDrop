@@ -1,13 +1,29 @@
 import React from 'react';
 import { Platform } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { TabNavigator, TabBarBottom } from 'react-navigation';
+import { TabNavigator, TabBarBottom, StackNavigator } from 'react-navigation';
 
 import Colors from '../constants/Colors';
 
 import HomeScreen from '../screens/HomeScreen';
 import EditList from '../screens/EditList';
+import EditScreen from '../screens/EditScreen'
 import SettingsScreen from '../screens/SettingsScreen';
+
+
+
+
+export const MyFurrysStack = StackNavigator({
+  EditList: {
+    screen: EditList,
+  },
+  FurryDetails: {
+    screen: EditScreen,
+    navigationOptions: ({ navigation }) => ({
+      title: `${navigation.state.params.petname.toUpperCase()}`,
+    }),
+  },
+});
 
 export default TabNavigator(
   {
@@ -15,7 +31,7 @@ export default TabNavigator(
       screen: HomeScreen,
     },
     MyFurrys: {
-      screen: EditList,
+      screen: MyFurrysStack,
     },
     Settings: {
       screen: SettingsScreen,

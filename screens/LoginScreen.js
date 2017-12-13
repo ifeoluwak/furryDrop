@@ -37,7 +37,7 @@ logIn = async() => {
         return (
             <View style={styles.container}>
             <Image source={img} style={{width: 150, height: 150, marginBottom: 70}}/>
-                <Button danger block onPress={()=>this.logIn()} title='login with facebook' style={{alignSelf:'center'}}>
+                <Button info block onPress={()=>this.props.navigation.navigate('Intro')} title='login with facebook' style={{alignSelf:'center'}}>
                 <Icon name='logo-facebook' />
                     <Text>Login with Facebook</Text>
                 </Button>
@@ -49,7 +49,7 @@ logIn = async() => {
 
 const styles = StyleSheet.create({
     container: {
-        backgroundColor: '#FF6347',
+        backgroundColor: '#000',
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',

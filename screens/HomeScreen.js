@@ -17,7 +17,6 @@ class HomeScreen extends React.Component {
   )}
 
   render() {
-    console.log(this.props.furry)
     return (
       <View style={styles.container}>
         <FlatList

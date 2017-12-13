@@ -13,7 +13,9 @@ class EditList extends Component {
     title:'My Furrys',
   };
 
-  renderFurrys ({item}) {
+  goToDetail = (item)=>this.props.navigation.navigate('FurryDetails', {...item});
+
+  renderFurrys  = ({item}) => {
     var swipeSettings = {
       autoClose: true,
       right:[
@@ -23,7 +25,7 @@ class EditList extends Component {
           type: 'delete'
         },
         {
-          onPress: ()=>{alert('edit')},
+          onPress: ()=>{this.goToDetail(item)},
           text: 'Edit',
           type: 'primary'
         }

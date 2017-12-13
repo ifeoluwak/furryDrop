@@ -17,11 +17,25 @@ const RootStackNavigator = StackNavigator(
     },
   },
   {
-    navigationOptions: () => ({
-      headerTitleStyle: {
-        fontWeight: 'normal',
-      },
-    }),
+    headerMode: 'none',
+  
+  }
+);
+
+const LoginStackNavigator = StackNavigator(
+  {
+    Login: {
+      screen: Login,
+    },
+    Intro: {
+      screen: Intro,
+    },
+    Main: {
+      screen: RootStackNavigator
+    }
+  },
+  {
+    headerMode: 'none'
   }
 );
 
@@ -49,8 +63,7 @@ class RootNavigator extends React.Component {
   }
 
   render() {
-     return <Intro/>
-     //this.state.loggedIn?<RootStackNavigator />:<Login/>
+     return this.state.loggedIn?<RootStackNavigator />:<LoginStackNavigator/>
   }
 
   _registerForPushNotifications() {
