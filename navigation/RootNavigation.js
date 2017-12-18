@@ -32,7 +32,7 @@ const LoginStackNavigator = StackNavigator(
     },
     Main: {
       screen: RootStackNavigator
-    }
+    },
   },
   {
     headerMode: 'none'
