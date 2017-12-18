@@ -12,12 +12,43 @@ var Form = t.form.Form;
 // here we are: define your domain model
 var Person = t.struct({
   petname: t.String,              // a required string
-  country: t.maybe(t.String),  // an optional string
   city: t.String,
-  // from: t.Date,
-  // toDate: t.Date,
-  token_amt: t.Number,             // a required number
+  drop_period: t.Number,
+  phone: t.Number,
+  description: t.maybe(t.String),
+  token_amt: t.maybe(t.String),             // a required number
 });
+
+var options = {
+  fields: {
+    petname: {
+      label: 'Pet Name',
+      placeholder: '',
+      error: 'pet name is required',
+    },
+    city: {
+      label: 'Your City',
+      placeholder: 'e.g San fransisco',
+      error: 'city field is required'
+    },
+    drop_period: {
+      label: 'Drop Period (Days)',
+      placeholder: 'e.g 20',
+      error: 'Enter a valid number'
+    },
+    description: {
+      type: 'textarea',
+      label: 'Description (120 Characters)',
+      placeholder: '',
+      multiline: true,
+      numberOfLines: 20
+    },
+    token_amt: {
+      label: 'Token Amount',
+      placeholder: 'e.g 20 Dollars',
+    },
+  }
+};
 
 export default class EditScreen extends React.Component {
   static navigationOptions = {
@@ -60,12 +91,13 @@ export default class EditScreen extends React.Component {
       <TouchableOpacity onPress={()=>this.pickImage()} style={{width: 200, alignSelf: 'center'}}>
       <View>
       <Image source={{uri: image}} style={{width: 150, height: 150, borderRadius: 75, alignSelf:'center'}}/>
-      <Icon name='md-camera' style={{position: 'absolute', right: 8, bottom: -5}} />
+      <Icon name='md-camera' style={{position: 'absolute', right: 10, bottom: -5}} />
       </View>
       </TouchableOpacity>
         <Form
           ref="form"
           type={Person}
+          options={options}
           value={value}
         />
         <Button onPress={()=>this.onPress()} underlayColor='#99d9f4'>
