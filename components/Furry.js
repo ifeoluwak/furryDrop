@@ -27,9 +27,9 @@ export default class Furry extends Component {
                 </Left>
                 </CardItem> */}
                 <Body style={{alignSelf:'stretch'}}>
-                    <Image source={{uri: item.furryimage}} style={{height: 300, alignSelf: 'stretch', flex: 1}}/>
+                    <Image source={{uri: item.furryimage}} style={{height: 200, alignSelf: 'stretch', flex: 1}}/>
                 </Body>
-                <CardItem>
+                {/* <CardItem>
                 <Left>
                     <Icon name="md-paw" size={30} />
                     <Text>{item.petname}</Text>
@@ -64,7 +64,7 @@ export default class Furry extends Component {
                     <Icon name="md-mail" size={30} />
                     </Button>
                 </Right>
-                </CardItem>
+                </CardItem> */}
             </Card>
             </Content>
         );

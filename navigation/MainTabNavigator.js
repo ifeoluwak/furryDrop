@@ -8,33 +8,42 @@ import Colors from '../constants/Colors';
 import HomeScreen from '../screens/HomeScreen';
 import EditList from '../screens/EditList';
 import EditScreen from '../screens/EditScreen'
-import SettingsScreen from '../screens/SettingsScreen';
+import PostScreen from '../screens/PostScreen';
 
 
 
 
-export const MyFurrysStack = StackNavigator({
+export const EditStack = StackNavigator({
   EditList: {
     screen: EditList,
   },
   FurryDetails: {
     screen: EditScreen,
-    navigationOptions: ({ navigation }) => ({
-      title: `${navigation.state.params.petname.toUpperCase()}`,
-    }),
-  },
+    
+  }}, 
+);
+
+export const HomeStack = StackNavigator({
+  Home: {
+    screen: HomeScreen,
+  } 
+});
+export const PostStack = StackNavigator({
+  Post: {
+    screen: PostScreen,
+  } 
 });
 
 export default TabNavigator(
   {
     Home: {
-      screen: HomeScreen,
+      screen: HomeStack,
     },
     MyFurrys: {
-      screen: MyFurrysStack,
+      screen: EditStack,
     },
-    Settings: {
-      screen: SettingsScreen,
+    Post: {
+      screen: PostStack,
     },
   },
   {
@@ -52,7 +61,7 @@ export default TabNavigator(
           case 'MyFurrys':
             iconName = Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link';
             break;
-          case 'Settings':
+          case 'Post':
             iconName =
               Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options';
         }
@@ -70,5 +79,6 @@ export default TabNavigator(
     tabBarPosition: 'bottom',
     animationEnabled: false,
     swipeEnabled: false,
+    
   }
 );

@@ -1,8 +1,9 @@
 import React from 'react';
-import { ScrollView, View, StyleSheet, Image, TouchableOpacity, refs, KeyboardAvoidingView } from 'react-native';
+import { ScrollView, View, StyleSheet, Image, TouchableOpacity, refs } from 'react-native';
 import {Button, Text, Thumbnail, Icon} from 'native-base'
-import { ImagePicker } from 'expo'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import { ImagePicker } from 'expo'
+
 
 var t = require('tcomb-form-native');
 
@@ -52,27 +53,28 @@ var options = {
       placeholder: 'e.g 20 Dollars',
     },
   }
-};
+}
 
-export default class EditScreen extends React.Component {
-  static navigationOptions = ({ navigation }) => {    
-    return {
-      title: `${navigation.state.params.petname.toUpperCase()}`,
-    }
+
+export default class SettingsScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Post',
+    headerTitle: 'Post',
   };
 
   state = {
-    image: this.props.navigation.state.params.furryimage,
+    image: null,
   };
 
   
 
+
   onPress =  () => {
-    // call getValue() to get the values of the form
-    var value = this.refs.form.getValue();
-    if (value) { // if validation fails, value will be null
-      console.log(value); // value here is an instance of Person
-    }
+    // // call getValue() to get the values of the form
+    // var value = this.refs.form.getValue();
+    // if (value) { // if validation fails, value will be null
+    //   console.log(value); // value here is an instance of Person
+    // }
   }
 
   pickImage = async () => {
@@ -88,23 +90,22 @@ export default class EditScreen extends React.Component {
     }
   };
 
-
   render() {
-    const value = this.props.navigation.state.params
     let {image} = this.state
     return (
       <KeyboardAwareScrollView style={styles.container}>
       <TouchableOpacity onPress={()=>this.pickImage()} style={{width: 200, alignSelf: 'center'}}>
-      <View>
+      <View style={{backgroundColor:'transparent'}}>
+      {this.state.image?
       <Image source={{uri: image}} style={{width: 150, height: 150, borderRadius: 75, alignSelf:'center'}}/>
+    : <View style={{height:200, backgroundColor: 'grey',width: 200, height: 200, borderRadius: 100}}/>}
       <Icon name='md-camera' style={{position: 'absolute', right: 10, bottom: -5}} />
       </View>
       </TouchableOpacity>
-        <Form
+      <Form
           ref="form"
           type={Person}
           options={options}
-          value={value}
         />
         <Button onPress={()=>this.onPress()} underlayColor='#99d9f4'>
           <Text >Save</Text>
@@ -122,7 +123,4 @@ const styles = StyleSheet.create({
     paddingRight: 15,
     backgroundColor: '#fff',
   },
-  textAreaStyle: {
-    height: 100
-  }
 });

@@ -10,17 +10,17 @@ import { GET_FURRYS, GET_MY_FURRYS } from '../Reducers/furry'
 import * as firebase from 'firebase'
 
 
-const RootStackNavigator = StackNavigator(
-  {
-    Main: {
-      screen: MainTabNavigator,
-    },
-  },
-  {
-    headerMode: 'none',
+// const RootStackNavigator = StackNavigator(
+//   {
+//     Main: {
+//       screen: MainTabNavigator,
+//     },
+//   },
+//   {
+//     //headerMode: 'none',
   
-  }
-);
+//   }
+// );
 
 const LoginStackNavigator = StackNavigator(
   {
@@ -31,7 +31,7 @@ const LoginStackNavigator = StackNavigator(
       screen: Intro,
     },
     Main: {
-      screen: RootStackNavigator
+      screen: MainTabNavigator
     },
   },
   {
@@ -63,7 +63,7 @@ class RootNavigator extends React.Component {
   }
 
   render() {
-     return this.state.loggedIn?<RootStackNavigator />:<LoginStackNavigator/>
+     return this.state.loggedIn?<MainTabNavigator />:<LoginStackNavigator/>
   }
 
   _registerForPushNotifications() {
