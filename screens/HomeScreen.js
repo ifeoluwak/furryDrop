@@ -8,7 +8,7 @@ import Furry from '../components/Furry'
 class HomeScreen extends React.Component {
   static navigationOptions = {
     title:'furryDrop',
-   headerRight: <Button onPress={()=>{}} title='' transparent><Icon name="md-more"/></Button>,
+   //headerRight: <Button onPress={()=>{}} title='' transparent><Icon name="md-more"/></Button>,
   };
 
   renderFurrys ({item}) {

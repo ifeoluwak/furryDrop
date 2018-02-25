@@ -31,7 +31,8 @@ const LoginStackNavigator = StackNavigator(
       screen: Intro,
     },
     Main: {
-      screen: MainTabNavigator
+      screen: MainTabNavigator,
+      key: 'main'
     },
   },
   {

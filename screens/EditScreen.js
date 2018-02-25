@@ -3,6 +3,7 @@ import { ScrollView, View, StyleSheet, Image, TouchableOpacity, refs, KeyboardAv
 import {Button, Text, Thumbnail, Icon} from 'native-base'
 import { ImagePicker } from 'expo'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
+import * as firebase from 'firebase'
 
 var t = require('tcomb-form-native');
 
@@ -16,7 +17,7 @@ stylesheet.textbox.normal.height = 100
 var Person = t.struct({
   petname: t.String,              // a required string
   city: t.String,
-  drop_period: t.Number,
+  drop_duration: t.Number,
   phone: t.Number,
   description: t.maybe(t.String),
   token_amt: t.maybe(t.String),             // a required number
@@ -34,7 +35,7 @@ var options = {
       placeholder: 'e.g San fransisco',
       error: 'city field is required'
     },
-    drop_period: {
+    drop_duration: {
       label: 'Drop Period (Days)',
       placeholder: 'e.g 20',
       error: 'Enter a valid number'
@@ -70,8 +71,25 @@ export default class EditScreen extends React.Component {
   onPress =  () => {
     // call getValue() to get the values of the form
     var value = this.refs.form.getValue();
+    const key = this.props.navigation.state.params.key
     if (value) { // if validation fails, value will be null
-      console.log(value); // value here is an instance of Person
+      //console.log(value); // value here is an instance of Person
+      let theTime = new Date()
+      let postRef = firebase.database().ref().child('posts').child(key)
+      postRef.set(
+        {
+          "address": "12, Hoffstegadt street",
+          "author": "1sSFXUfT6LPiCaR52GBrTuRhFSs2",
+          "city": value.city,
+          "description": value.description,
+          "drop_duration": value.drop_duration,
+          "petname": value.petname,
+          "phone": value.phone,
+          "token_amt": value.token_amt,
+          'timestamp': theTime,
+          "furryimage": "http://www.simplypetinsurance.co.uk/wp-content/uploads/2010/08/pet2.jpg",
+        }
+      );
     }
   }
 
@@ -81,7 +99,7 @@ export default class EditScreen extends React.Component {
       aspect: [4, 3],
     });
 
-    console.log(result);
+    //console.log(result);
 
     if (!result.cancelled) {
       this.setState({ image: result.uri });

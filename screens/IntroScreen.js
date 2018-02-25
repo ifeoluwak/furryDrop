@@ -3,6 +3,8 @@ import { StyleSheet, Text, View, Image, TouchableOpacity } from 'react-native'
 import { Button } from 'native-base'
 import Swiper from 'react-native-swiper'
 import { Asset } from 'expo'
+import { NavigationActions } from 'react-navigation';
+
 
 var slide1 = require('../assets/images/slide1.jpeg')
 var slide2 = require('../assets/images/slide2.jpeg')
@@ -16,8 +18,17 @@ slides = [
     {title: 'Earn A Little Cash Caring For Pets You Love', image: slide3}
 ]
 
+const navigateAction = NavigationActions.reset({
+    routeName: 'Main',
+    key: 'main',
+    params: {},
+  
+    // navigate can have a nested navigate action that will be run inside the child router
+    action: NavigationActions.replace({ routeName: 'Main' }),
+  });
 
 class Intro extends Component {
+
     render(){
         return (
          <Swiper showsButtons={true} dotColor={'#fff'} activeDotColor={'rgba(255,255,255,0.4)'} showsButtons={false}>
