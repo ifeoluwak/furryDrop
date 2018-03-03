@@ -15,7 +15,7 @@ export function _GET_MY_FURRYS(data) {
 }
 
 export const GET_FURRYS = () => (dispatch) => {
-    firebase.database().ref('posts').limitToLast(4).on("value", function(snapshot) {
+    firebase.database().ref('posts').limitToLast(6).on("value", function(snapshot) {
         var items = [];
         snapshot.forEach((item) => {
             items.unshift(item.val())

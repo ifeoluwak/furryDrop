@@ -1,8 +1,9 @@
-import React, { Component } from 'react';
-import { FlatList, ActivityIndicator } from 'react-native';
+import React, { Component } from 'react'
+import { FlatList, ActivityIndicator, Alert } from 'react-native'
 import { Container, Header, Content, List, ListItem, Left, Body, Right, Thumbnail, Text } from 'native-base';
 import {connect} from 'react-redux'
-import Swipeout from 'react-native-swipeout';
+import Swipeout from 'react-native-swipeout'
+import * as firebase from 'firebase'
 
 class EditList extends Component {
   constructor(props) {
@@ -13,14 +14,20 @@ class EditList extends Component {
     title:'My Furrys',
   };
 
-  goToDetail = (item)=>this.props.navigation.navigate('FurryDetails', {...item});
+  goToDetail = (item)=>this.props.navigation.navigate('FurryDetails', {...item})
+  delete = (item)=>{
+    Alert.alert("Delete", "Are you sure you want to delete", [
+      {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
+      {text: 'Yes', onPress: () => firebase.database().ref().child('posts').child(item.key).remove()},
+    ])
+  }
 
   renderFurrys  = ({item}) => {
     var swipeSettings = {
       autoClose: true,
       right:[
         {
-          onPress: ()=>{alert('jdjdjd')},
+          onPress: ()=>{this.delete(item)},
           text: 'Delete',
           type: 'delete'
         },
@@ -61,7 +68,7 @@ class EditList extends Component {
             keyExtractor={(item, index) => index}
             style={{alignSelf: 'stretch'}}
           />
-          :<Text>You don't have any furrys.</Text>
+          :<Text style={{textAlign: 'center', marginTop: 30}}>You don't have any furrys.</Text>
     );
   }
 }

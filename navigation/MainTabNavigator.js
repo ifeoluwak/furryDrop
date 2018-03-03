@@ -36,7 +36,7 @@ export const PostStack = StackNavigator({
 
 export default TabNavigator(
   {
-    Home: {
+    Furrys: {
       screen: HomeStack,
     },
     MyFurrys: {
@@ -52,7 +52,7 @@ export default TabNavigator(
         const { routeName } = navigation.state;
         let iconName;
         switch (routeName) {
-          case 'Home':
+          case 'Furrys':
             iconName =
               Platform.OS === 'ios'
                 ? `ios-information-circle${focused ? '' : '-outline'}`
@@ -70,15 +70,25 @@ export default TabNavigator(
             name={iconName}
             size={28}
             style={{ marginBottom: -3 }}
-            color={focused ? Colors.tabIconSelected : Colors.tabIconDefault}
+            color={focused ? "#fff" : Colors.tabIconDefault}
           />
         );
       },
     }),
+    activeTintColor: '#000',
     tabBarComponent: TabBarBottom,
     tabBarPosition: 'bottom',
     animationEnabled: false,
     swipeEnabled: false,
+    tabBarOptions: {
+      activeTintColor: '#fff',
+      labelStyle: {
+        fontSize: 12,
+      },
+      style: {
+        backgroundColor: '#000',
+      },
+    }
     
   }
 );

@@ -16,19 +16,9 @@ export default class Furry extends Component {
         let {item} = this.props 
         return (
             <Content>
-            <Card style={{flex: 0}}>
-                {/* <CardItem>
-                <Left>
-                    <Thumbnail source={{uri: 'Image URL'}} />
-                    <Body>
-                    <Text>NativeBase</Text>
-                    <Text note>April 15, 2016</Text>
-                    </Body>
-                </Left>
-                </CardItem> */}
-                <Body style={{alignSelf:'stretch'}}>
+            <Card style={{flex: 0, padding: 0}}>
                     <Image source={{uri: item.furryimage}} style={{height: 200, alignSelf: 'stretch', flex: 1}}/>
-                </Body>
+                
                 {/* <CardItem>
                 <Left>
                     <Icon name="md-paw" size={30} />
