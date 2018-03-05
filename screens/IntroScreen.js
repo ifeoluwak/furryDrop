@@ -37,7 +37,7 @@ class Intro extends Component {
             <View style={styles.slide} key={i}>
                 <Text style={styles.texttop}>{slide.title}</Text>
                 <Image source={slide.image} style={styles.img}/>
-                <TouchableOpacity style={styles.skip} onPress={()=>this.props.navigation.navigate('Main')} title='login with facebook'>
+                <TouchableOpacity style={styles.skip} onPress={()=>this.props.navigation.navigate('Login')} title='login with facebook'>
                     <Text style={styles.skiptext}>SKIP</Text>
                 </TouchableOpacity>
             </View>

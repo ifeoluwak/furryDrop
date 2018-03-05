@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import { Image, Modal, StyleSheet, TouchableHighlight } from 'react-native'
+import { Image, Modal, StyleSheet, TouchableHighlight, Alert } from 'react-native'
 import { Button, View, Text, Icon } from 'native-base'
 import {Facebook} from 'expo'
 import * as firebase from 'firebase'
@@ -21,18 +21,15 @@ logIn = async() => {
         permissions: ['public_profile','email'],
       });
     if (type === 'success') {
-        console.log(token)
-      // Get the user's name using Facebook's Graph API
-      const response = await fetch(`https://graph.facebook.com/me?fields=id,first_name,gender,last_name,location,picture,email&access_token=${token}`);
-      let user = await response.json();
-      console.log(JSON.stringify(user));
+      const response = await fetch(`https://graph.facebook.com/me?access_token=${token}`);
+      //let user = await response.json();
+      //console.log(JSON.stringify(user));
 
-    //   const credential = firebase.auth.FacebookAuthProvider.credential(token);
+      const credential = firebase.auth.FacebookAuthProvider.credential(token);
       
-    //     // Sign in with credential from the Facebook user.
-    //     firebase.auth().signInWithCredential(credential).catch((error) => {
-    //     // Handle Errors here.
-    //     });
+        firebase.auth().signInWithCredential(credential).catch((error) => {
+            Alert.alert(error)
+        });
     }
 }
   
@@ -41,11 +38,11 @@ logIn = async() => {
         return (
             <View style={styles.container}>
             <Image source={img} style={{width: 150, height: 150, marginBottom: 70}}/>
-                <Button info block onPress={()=>this.props.navigation.navigate('Intro')} title='login with facebook' style={{alignSelf:'center'}}>
+                <Button info block onPress={()=>this.logIn()} title='login with facebook' style={{alignSelf:'center'}}>
                 <Icon name='logo-facebook' />
                     <Text>Login with Facebook</Text>
                 </Button>
-                <Modal
+                {/* <Modal
                     animationType="slide"
                     transparent={false}
                     visible={this.state.modalVisible}
@@ -64,7 +61,7 @@ logIn = async() => {
                     </TouchableHighlight>
                     </View>
                 </View>
-                </Modal>
+                </Modal> */}
             </View>
         )
     }

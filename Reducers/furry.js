@@ -24,8 +24,8 @@ export const GET_FURRYS = () => (dispatch) => {
     });
 }
 
-export const GET_MY_FURRYS = () => (dispatch) => {
-    firebase.database().ref('posts').orderByChild("author").equalTo('1sSFXUfT6LPiCaR52GBrTuRhFSs2').on("value", function(snapshot) {
+export const GET_MY_FURRYS = (uid) => (dispatch) => {
+    firebase.database().ref('posts').orderByChild("author").equalTo(uid).on("value", function(snapshot) {
         var items = [];
         
         snapshot.forEach((item) => {

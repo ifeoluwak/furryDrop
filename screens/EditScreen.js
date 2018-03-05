@@ -57,13 +57,13 @@ export default class EditScreen extends React.Component {
       title: `${navigation.state.params.petname.toUpperCase()}`,
       tabBarVisible: false 
     }
-  };
+  }
 
   state = {
     image: this.props.navigation.state.params.furryimage,
     pickImaged : null,
     uploading: false
-  };
+  }
 
   
 

@@ -1,31 +1,51 @@
 import React from 'react';
-import {Image, Platform, FlatList, StyleSheet, View, Button, Icon } from 'react-native';
+import {Image, TouchableOpacity, Platform, FlatList, StyleSheet, View, Button, Icon, Text } from 'react-native';
 import { connect } from 'react-redux'
 import Furry from '../components/Furry'
 
 
 
 class HomeScreen extends React.Component {
+
   static navigationOptions = {
-    headerTitle:'furryDrop',
+    headerTitle:'FurryDrop',
+    headerTitleStyle: {
+      fontSize: 25,
+      color: '#343434'
+    }
     //headerRight: <Button onPress={()=>{}} title='' transparent><Icon name="md-more"/></Button>,
   };
 
-  renderFurrys ({item}) {
+
+  goToDetail = (item)=>this.props.navigation.navigate('Detail', {...item})
+
+  renderFurrys = ({item}) => {
     return (
-      <Furry item={item}/>
+      <TouchableOpacity onPress={()=>this.goToDetail(item)}>
+      <Furry item={item} />
+      </TouchableOpacity>
   )}
+
+  loadMore = ()=> {
+    alert('hello')
+  }
 
   render() {
     return (
       <View style={styles.container}>
+      {
+        this.props.furry.length?
         <FlatList
-            data={this.props.furry.furrys}
+            data={this.props.furry}
             renderItem={this.renderFurrys}
             extraData={this.props}
             keyExtractor={(item, index) => index}
             style={{alignSelf: 'stretch'}}
+            action={this.goToDetail}
           />
+          :
+          <Text>Loading....please wait</Text>
+      }
       </View>
     );
   }
@@ -69,7 +89,7 @@ const styles = StyleSheet.create({
 });
 
 const mapStateToProps = (state) => ({
-    furry: state.furrys
+    furry: state.furrys.furrys
 })
 
 

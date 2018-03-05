@@ -9,7 +9,6 @@ export default uploadToCloudinary = async(result) => {
     let data = {
       "file": img,
       "upload_preset": "tdyz2bt0",
-      "api_key": "1234567"
     }
 
     let newUrl = await fetch(apiUrl, {

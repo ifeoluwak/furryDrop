@@ -6,6 +6,7 @@ import { TabNavigator, TabBarBottom, StackNavigator } from 'react-navigation';
 import Colors from '../constants/Colors';
 
 import HomeScreen from '../screens/HomeScreen';
+import DetailScreen from '../screens/DetailScreen';
 import EditList from '../screens/EditList';
 import EditScreen from '../screens/EditScreen'
 import PostScreen from '../screens/PostScreen';
@@ -17,7 +18,7 @@ export const EditStack = StackNavigator({
   EditList: {
     screen: EditList,
   },
-  FurryDetails: {
+  EditDetails: {
     screen: EditScreen,
     
   }}, 
@@ -26,6 +27,9 @@ export const EditStack = StackNavigator({
 export const HomeStack = StackNavigator({
   Home: {
     screen: HomeScreen,
+  },
+  Detail: {
+    screen: DetailScreen,
   } 
 });
 export const PostStack = StackNavigator({

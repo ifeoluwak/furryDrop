@@ -63,19 +63,17 @@ export default class PostScreen extends React.Component {
 
   state = {
     image: null,
-    cloudinary_img: null,
-    uploading: false
+    uploading: false,
+    uid: null
   };
 
   
-
-
-  onPress =  () => {
-    // // call getValue() to get the values of the form
-    // var value = this.refs.form.getValue();
-    // if (value) { // if validation fails, value will be null
-    //   console.log(value); // value here is an instance of Post
-    // }
+  async componentDidMount(){
+    let {uid} = await firebase.auth().currentUser;
+    this.setState({
+      uid
+    })
+    
   }
 
   pickImage = async () => {
@@ -103,7 +101,7 @@ export default class PostScreen extends React.Component {
           var newPostRef = postRef.push();
           newPostRef.set(
             {
-              "author": "1sSFXUfT6LPiCaR52GBrTuRhFSs2",
+              "author": this.state.uid,
               "location": value.location,
               "description": value.description,
               "drop_duration": value.drop_duration,
@@ -115,7 +113,7 @@ export default class PostScreen extends React.Component {
             }
           ).then(response=>console.log(response))
           
-          this.setState({uploading: false})
+          this.setState({uploading: false, image: null})
       }
     }
   }
@@ -131,7 +129,7 @@ export default class PostScreen extends React.Component {
       {this.state.image?
         <Image source={{uri: image.uri}} style={{width: 150, height: 150, borderRadius: 75, alignSelf:'center'}}/>
         :
-        <View style={{height:200, backgroundColor: 'grey',width: 200, height: 200, borderRadius: 100}}/>
+        <View style={{backgroundColor: 'grey',width: 200, height: 200, borderRadius: 100}}/>
       }
       <Icon name='md-camera' style={{position: 'absolute', right: 10, bottom: -5}} />
       </View>

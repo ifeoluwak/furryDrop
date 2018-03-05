@@ -4,7 +4,7 @@ import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Ic
 import { Ionicons } from '@expo/vector-icons';
 
 
-
+//ion-ios-location-outline
 
 export default class Furry extends Component {
     constructor(props) {
@@ -17,7 +17,7 @@ export default class Furry extends Component {
         return (
             <Content>
             <Card style={{flex: 0, padding: 0}}>
-                    <Image source={{uri: item.furryimage}} style={{height: 200, alignSelf: 'stretch', flex: 1}}/>
+                    <Image source={{uri: item.furryimage}} style={{height: 150, alignSelf: 'stretch', flex: 1}}/>
                 
                 {/* <CardItem>
                 <Left>

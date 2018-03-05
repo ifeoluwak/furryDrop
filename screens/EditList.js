@@ -14,7 +14,7 @@ class EditList extends Component {
     title:'My Furrys',
   };
 
-  goToDetail = (item)=>this.props.navigation.navigate('FurryDetails', {...item})
+  goToDetail = (item)=>this.props.navigation.navigate('EditDetails', {...item})
   delete = (item)=>{
     Alert.alert("Delete", "Are you sure you want to delete", [
       {text: 'Cancel', onPress: () => console.log('Cancel Pressed'), style: 'cancel'},
