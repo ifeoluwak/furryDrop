@@ -73,12 +73,13 @@ export default class EditScreen extends React.Component {
     if (value) {
       this.setState({uploading: true})
       let img = this.state.pickImaged?await uploadToCloudinary(this.state.pickImaged): this.state.image
+      let {uid} = await firebase.auth().currentUser;
       if(img) {
         let theTime = new Date()
         let postRef = firebase.database().ref().child('posts').child(key)
         postRef.set(
           {
-            "author": "1sSFXUfT6LPiCaR52GBrTuRhFSs2",
+            "author": uid,
             "location": value.location,
             "description": value.description,
             "drop_duration": value.drop_duration,

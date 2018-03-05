@@ -73,6 +73,8 @@ export default class PostScreen extends React.Component {
     this.setState({
       uid
     })
+
+    console.log(uid)
     
   }
 
