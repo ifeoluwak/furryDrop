@@ -1,18 +1,9 @@
-import { createStore, applyMiddleware, combineReducers } from 'redux';
-import ReduxThunk from 'redux-thunk';
-import {furrys} from './furry'
-
+import { createStore, applyMiddleware, combineReducers } from "redux"
+import ReduxThunk from "redux-thunk"
+import { furrys } from "./furry"
 
 export const AppReducer = combineReducers({
-    furrys: furrys,
+  furrys
 })
 
-
-export const store = createStore(
-    AppReducer,
-    applyMiddleware(
-		ReduxThunk
-	)
-)
-
-
+export const store = createStore(AppReducer, applyMiddleware(ReduxThunk))

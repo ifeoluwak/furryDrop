@@ -33,7 +33,7 @@ class EditList extends Component {
   }
 
   renderFurrys = ({ item }) => {
-    var swipeSettings = {
+    let swipeSettings = {
       autoClose: true,
       right: [
         {

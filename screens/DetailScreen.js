@@ -29,8 +29,8 @@ export default class DetailScreen extends Component {
   }
 
   async componentDidMount() {
-    let country = await SecureStore.getItemAsync("country")
-    this.setState({ country })
+    // let country = await SecureStore.getItemAsync("countryID")
+    // this.setState({ country })
   }
 
   toggleModal = () => {
@@ -38,7 +38,6 @@ export default class DetailScreen extends Component {
   }
 
   render() {
-    console.log(Country[this.state.country])
     let {
       description,
       drop_duration,

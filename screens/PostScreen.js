@@ -102,7 +102,9 @@ export default class PostScreen extends React.Component {
             phone: value.phone,
             token_amt: value.token_amt,
             timestamp: theTime,
-            furryimage: img
+            furryimage: img,
+            created_at: "",
+            country: "US"
           })
           .then(response => console.log(response))
 
