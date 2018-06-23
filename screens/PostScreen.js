@@ -2,7 +2,7 @@ import React from "react"
 import { View, StyleSheet, Image, TouchableOpacity } from "react-native"
 import { Button, Text, Icon, Spinner } from "native-base"
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view"
-import { ImagePicker } from "expo"
+import { ImagePicker, SecureStore } from "expo"
 import * as firebase from "firebase"
 import uploadToCloudinary from "../api/imageUpload"
 
@@ -18,7 +18,7 @@ var Post = t.struct({
   drop_duration: t.Number,
   phone: t.Number,
   description: t.maybe(t.String),
-  token_amt: t.maybe(t.String)
+  token_amt: t.maybe(t.Number)
 })
 
 var options = {
@@ -28,7 +28,7 @@ var options = {
       placeholder: ""
     },
     location: {
-      label: "Your location",
+      label: "Your location/city",
       placeholder: "e.g San fransisco"
     },
     drop_duration: {
@@ -37,7 +37,7 @@ var options = {
     },
     description: {
       type: "textarea",
-      label: "Description (120 Characters)",
+      label: "Description (optional)",
       placeholder: "",
       multiline: true,
       numberOfLines: 20,
@@ -45,7 +45,7 @@ var options = {
     },
     token_amt: {
       label: "Token Amount",
-      placeholder: "e.g 20 Dollars"
+      placeholder: "e.g 20"
     }
   }
 }
@@ -59,13 +59,16 @@ export default class PostScreen extends React.Component {
   state = {
     image: null,
     uploading: false,
-    uid: null
+    uid: null,
+    countryID: null
   }
 
   async componentDidMount() {
     let { uid } = await firebase.auth().currentUser
+    let countryID = await SecureStore.getItemAsync("countryID")
     this.setState({
-      uid
+      uid,
+      countryID
     })
 
     console.log(uid)
@@ -101,10 +104,10 @@ export default class PostScreen extends React.Component {
             petname: value.petname,
             phone: value.phone,
             token_amt: value.token_amt,
-            timestamp: theTime,
+            updated_at: `${theTime}`,
             furryimage: img,
-            created_at: "",
-            country: "US"
+            created_at: `${theTime}`,
+            country: this.state.countryID
           })
           .then(response => console.log(response))
 

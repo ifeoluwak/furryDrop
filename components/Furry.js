@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { Image } from "react-native"
-import { Content, Card } from "native-base"
+import { Content, Card, CardItem, Left, Body, Text } from "native-base"
 
 export default class Furry extends Component {
   render() {
@@ -12,6 +12,14 @@ export default class Furry extends Component {
             source={{ uri: item.furryimage }}
             style={{ height: 150, alignSelf: "stretch", flex: 1 }}
           />
+          <CardItem>
+            <Left>
+              <Body>
+                <Text>{item.petname}</Text>
+                <Text note>{item.location}</Text>
+              </Body>
+            </Left>
+          </CardItem>
         </Card>
       </Content>
     )

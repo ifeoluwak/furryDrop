@@ -9,7 +9,7 @@ import {
 } from "react-native"
 import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
-import { Icon, Picker } from "native-base"
+import { Icon, Picker, Button } from "native-base"
 import { SecureStore } from "expo"
 import { GET_FURRYS } from "../Reducers/furry"
 import Furry from "../components/Furry"
@@ -44,7 +44,10 @@ class HomeScreen extends React.Component {
 
   renderFurrys = ({ item }) => {
     return (
-      <TouchableOpacity key={item.key} onPress={() => this.goToDetail(item)}>
+      <TouchableOpacity
+        key={item.key}
+        onPress={() => this.goToDetail({ ...item, cid: this.state.selected })}
+      >
         <Furry item={item} />
       </TouchableOpacity>
     )
@@ -79,17 +82,33 @@ class HomeScreen extends React.Component {
             <Picker.Item label={Country[item].name} value={item} key={item} />
           ))}
         </Picker>
-        {this.props.furry.length ? (
+        {!this.props.loading ? (
           <FlatList
             data={this.props.furry}
             renderItem={this.renderFurrys}
             style={{ alignSelf: "stretch", marginTop: 5 }}
             action={this.goToDetail}
-            ListEmptyComponent={<Text>Nothing to Show</Text>}
-            ListFooterComponent={
-              <Text style={{ alignSelf: "center" }}>
-                No more furrys to show
-              </Text>
+            ListEmptyComponent={
+              <View
+                style={{
+                  flex: 1,
+                  alignItems: "center",
+                  justifyContent: "center"
+                }}
+              >
+                <Text>No furry found!</Text>
+                <Button
+                  onPress={() => this.props.GET_FURRYS(this.state.selected)}
+                  style={{
+                    width: 100,
+                    alignSelf: "center",
+                    justifyContent: "center",
+                    marginTop: 20
+                  }}
+                >
+                  <Text>Try again</Text>
+                </Button>
+              </View>
             }
           />
         ) : (
@@ -122,7 +141,8 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => ({
-  furry: state.furrys.furrys
+  furry: state.furrys.furrys,
+  loading: state.furrys.loading
 })
 
 const mapDispatchToProps = dispatch =>

@@ -18,7 +18,7 @@ var Post = t.struct({
   drop_duration: t.Number,
   phone: t.Number,
   description: t.maybe(t.String),
-  token_amt: t.maybe(t.String)
+  token_amt: t.maybe(t.Number)
 })
 
 var options = {
@@ -28,7 +28,7 @@ var options = {
       placeholder: ""
     },
     location: {
-      label: "Your location",
+      label: "Your location/city",
       placeholder: "e.g San fransisco"
     },
     drop_duration: {
@@ -37,7 +37,7 @@ var options = {
     },
     description: {
       type: "textarea",
-      label: "Description (120 Characters)",
+      label: "Description (optional)",
       placeholder: "",
       multiline: true,
       numberOfLines: 20,
@@ -45,7 +45,7 @@ var options = {
     },
     token_amt: {
       label: "Token Amount",
-      placeholder: "e.g 20 Dollars"
+      placeholder: "e.g 20"
     }
   }
 }
@@ -66,13 +66,17 @@ export default class EditScreen extends React.Component {
 
   onPress = async () => {
     var value = this.refs.form.getValue()
-    const key = this.props.navigation.state.params.key
+    const {
+      key,
+      author,
+      created_at,
+      country
+    } = this.props.navigation.state.params
     if (value) {
       this.setState({ uploading: true })
       let img = this.state.pickImaged
         ? await uploadToCloudinary(this.state.pickImaged)
         : this.state.image
-      let { uid } = await firebase.auth().currentUser
       if (img) {
         let theTime = new Date()
         let postRef = firebase
@@ -81,14 +85,16 @@ export default class EditScreen extends React.Component {
           .child("posts")
           .child(key)
         postRef.set({
-          author: uid,
+          author,
           location: value.location,
           description: value.description,
           drop_duration: value.drop_duration,
           petname: value.petname,
           phone: value.phone,
           token_amt: value.token_amt,
-          timestamp: theTime,
+          created_at,
+          updated_at: `${theTime}`,
+          country,
           furryimage: img
         })
         this.setState({ uploading: false })
@@ -111,6 +117,7 @@ export default class EditScreen extends React.Component {
 
   render() {
     const value = this.props.navigation.state.params
+    console.log(value)
     let { image, pickImaged } = this.state
     return (
       <KeyboardAwareScrollView style={styles.container}>

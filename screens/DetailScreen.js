@@ -9,7 +9,6 @@ import {
 } from "react-native"
 import ImageView from "react-native-image-view"
 import { Ionicons } from "@expo/vector-icons"
-import { SecureStore } from "expo"
 import Country from "../constants/Country"
 
 export default class DetailScreen extends Component {
@@ -24,13 +23,7 @@ export default class DetailScreen extends Component {
   }
 
   state = {
-    isVisible: false,
-    country: ""
-  }
-
-  async componentDidMount() {
-    // let country = await SecureStore.getItemAsync("countryID")
-    // this.setState({ country })
+    isVisible: false
   }
 
   toggleModal = () => {
@@ -45,7 +38,8 @@ export default class DetailScreen extends Component {
       location,
       petname,
       phone,
-      token_amt
+      token_amt,
+      cid
     } = this.props.navigation.state.params
     return (
       <ScrollView style={styles.container}>
@@ -96,8 +90,7 @@ export default class DetailScreen extends Component {
           </View>
           <View>
             <Text style={{ fontWeight: "bold" }}>
-              Owner is willing to pay{" "}
-              {this.state.country ? Country[this.state.country].currency : ""}{" "}
+              Owner is willing to pay {cid ? Country[cid].currency : ""}{" "}
               {token_amt}
             </Text>
           </View>

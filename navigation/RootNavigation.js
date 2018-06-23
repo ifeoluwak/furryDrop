@@ -33,11 +33,13 @@ class RootNavigator extends React.Component {
 
   async componentWillMount() {
     // await SecureStore.deleteItemAsync("countryID")
-    let userID = await SecureStore.getItemAsync("userID")
-    let countryID = await SecureStore.getItemAsync("countryID")
-    if (userID && countryID) {
-      this.props.getFurrys(countryID)
-      this.props.getMyFurrys(userID)
+    let userID = SecureStore.getItemAsync("userID")
+    let countryID = SecureStore.getItemAsync("countryID")
+    const uid = await userID
+    const cid = await countryID
+    if (uid && cid) {
+      this.props.getFurrys(cid)
+      this.props.getMyFurrys(uid)
       this.setState({ loggedIn: true })
     }
 
@@ -45,7 +47,7 @@ class RootNavigator extends React.Component {
       if (user != null) {
         SecureStore.setItemAsync("userID", user.uid)
         this.props.getMyFurrys(user.uid)
-        this.props.getFurrys(countryID)
+        this.props.getFurrys(cid)
         this.setState({ loggedIn: true })
       }
     })

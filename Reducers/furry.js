@@ -6,6 +6,12 @@ export function _INIT() {
   }
 }
 
+export function _FAILED() {
+  return {
+    type: "FAILED"
+  }
+}
+
 export function _GET_FURRYS(data) {
   return {
     type: "GET_FURRYS",
@@ -20,30 +26,28 @@ export function _GET_MY_FURRYS(data) {
   }
 }
 
-export function _LOAD_MORE_FURRYS(data) {
-  return {
-    type: "LOAD_MORE_FURRYS",
-    payload: data
-  }
-}
-
 export const GET_FURRYS = (countryID = "US") => dispatch => {
   console.log(countryID)
-  firebase
-    .database()
-    .ref("posts")
-    .orderByChild("country")
-    .equalTo(countryID)
-    .limitToLast(2)
-    .on("value", function(snapshot) {
-      var items = []
-      snapshot.forEach(item => {
-        const data = item.val()
-        data["key"] = item.key
-        items.push(data)
+  dispatch(_INIT())
+  try {
+    firebase
+      .database()
+      .ref("posts")
+      .orderByChild("country")
+      .equalTo(countryID)
+      .limitToLast(35)
+      .on("value", function(snapshot) {
+        var items = []
+        snapshot.forEach(item => {
+          const data = item.val()
+          data["key"] = item.key
+          items.push(data)
+        })
+        dispatch(_GET_FURRYS(items))
       })
-      dispatch(_GET_FURRYS(items))
-    })
+  } catch (e) {
+    console.log("failed")
+  }
 }
 
 // export const LOADMORE_FURRYS = furry => dispatch => {
@@ -87,8 +91,7 @@ export const GET_MY_FURRYS = uid => dispatch => {
 const initialState = {
   furrys: [],
   myfurrys: [],
-  loading: false,
-  more: []
+  loading: false
 }
 
 export function furrys(state = initialState, action) {
@@ -104,12 +107,6 @@ export function furrys(state = initialState, action) {
         furrys: action.payload,
         loading: false
       }
-    // case "LOAD_MORE_FURRYS":
-    //   return {
-    //     ...state,
-    //     furrys: [...state.furrys, ...action.payload],
-    //     loading: false
-    //   }
     case "MY_FURRYS":
       return {
         ...state,

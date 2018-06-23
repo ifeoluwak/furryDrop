@@ -61,13 +61,10 @@ class EditList extends Component {
             </Left>
             <Body>
               <Text>{item.petname}</Text>
-              <Text note>
-                Doing what you like will always keep you happy . .
+              <Text note numberOfLines={2}>
+                {item.description}...
               </Text>
             </Body>
-            <Right>
-              <Text note>3:43 pm</Text>
-            </Right>
           </ListItem>
         </List>
       </Swipeout>
@@ -80,7 +77,7 @@ class EditList extends Component {
         data={this.props.myfurrys}
         renderItem={this.renderFurrys}
         extraData={this.props}
-        keyExtractor={index => index}
+        keyExtractor={item => item.key}
         style={{ alignSelf: "stretch" }}
       />
     ) : (
