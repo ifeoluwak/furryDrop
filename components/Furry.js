@@ -15,7 +15,15 @@ export default class Furry extends Component {
           <CardItem>
             <Left>
               <Body>
-                <Text>{item.petname}</Text>
+                <Text
+                  style={{
+                    fontSize: 18,
+                    fontWeight: "100",
+                    color: "#343434"
+                  }}
+                >
+                  {item.petname}
+                </Text>
                 <Text note>{item.location}</Text>
               </Body>
             </Left>

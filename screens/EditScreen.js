@@ -10,7 +10,12 @@ var t = require("tcomb-form-native")
 
 var Form = t.form.Form
 const stylesheet = _.cloneDeep(t.form.Form.stylesheet)
-stylesheet.textbox.normal.height = 100
+stylesheet.textbox.normal.fontSize = 14
+stylesheet.textbox.normal.fontWeight = "100"
+stylesheet.textbox.normal.color = "#343434"
+stylesheet.controlLabel.normal.fontSize = 18
+stylesheet.controlLabel.normal.fontWeight = "100"
+stylesheet.controlLabel.normal.color = "#343434"
 
 var Post = t.struct({
   petname: t.String,
@@ -25,15 +30,21 @@ var options = {
   fields: {
     petname: {
       label: "Pet Name",
-      placeholder: ""
+      placeholder: "",
+      stylesheet
     },
     location: {
       label: "Your location/city",
-      placeholder: "e.g San fransisco"
+      placeholder: "e.g San fransisco",
+      stylesheet
     },
     drop_duration: {
       label: "Drop Duration (Days)",
-      placeholder: "e.g 20"
+      placeholder: "e.g 20",
+      stylesheet
+    },
+    phone: {
+      stylesheet
     },
     description: {
       type: "textarea",
@@ -45,7 +56,8 @@ var options = {
     },
     token_amt: {
       label: "Token Amount",
-      placeholder: "e.g 20"
+      placeholder: "e.g 20",
+      stylesheet
     }
   }
 }
@@ -54,7 +66,12 @@ export default class EditScreen extends React.Component {
   static navigationOptions = ({ navigation }) => {
     return {
       title: `${navigation.state.params.petname.toUpperCase()}`,
-      tabBarVisible: false
+      tabBarVisible: false,
+      headerTitleStyle: {
+        fontSize: 25,
+        fontWeight: "100",
+        color: "#343434"
+      }
     }
   }
 
@@ -117,7 +134,6 @@ export default class EditScreen extends React.Component {
 
   render() {
     const value = this.props.navigation.state.params
-    console.log(value)
     let { image, pickImaged } = this.state
     return (
       <KeyboardAwareScrollView style={styles.container}>
@@ -141,6 +157,12 @@ export default class EditScreen extends React.Component {
             />
           </View>
         </TouchableOpacity>
+        <Text
+          note
+          style={{ alignSelf: "center", marginBottom: 10, marginTop: 30 }}
+        >
+          Country is set to {value.country}
+        </Text>
         <Form ref="form" type={Post} options={options} value={value} />
         <Button
           block

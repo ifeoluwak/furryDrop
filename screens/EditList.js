@@ -1,13 +1,18 @@
 import React, { Component } from "react"
 import { FlatList, Alert } from "react-native"
-import { List, ListItem, Left, Body, Right, Thumbnail, Text } from "native-base"
+import { List, ListItem, Left, Body, Thumbnail, Text } from "native-base"
 import { connect } from "react-redux"
 import Swipeout from "react-native-swipeout"
 import * as firebase from "firebase"
 
 class EditList extends Component {
   static navigationOptions = {
-    title: "My Furrys"
+    title: "My Furrys",
+    headerTitleStyle: {
+      fontSize: 25,
+      fontWeight: "100",
+      color: "#343434"
+    }
   }
 
   goToDetail = item =>
@@ -54,14 +59,21 @@ class EditList extends Component {
     }
     return (
       <Swipeout {...swipeSettings}>
-        <List>
-          <ListItem avatar style={{ marginLeft: 0, paddingLeft: 5 }}>
+        <List style={{ backgroundColor: "#fff" }}>
+          <ListItem
+            avatar
+            style={{
+              marginLeft: 0,
+              paddingLeft: 5,
+              backgroundColor: "rgba(255,255,255,0.6)"
+            }}
+          >
             <Left>
               <Thumbnail source={{ uri: item.furryimage }} />
             </Left>
             <Body>
-              <Text>{item.petname}</Text>
-              <Text note numberOfLines={2}>
+              <Text style={{ fontWeight: "100" }}>{item.petname}</Text>
+              <Text note numberOfLines={2} style={{ fontWeight: "100" }}>
                 {item.description}...
               </Text>
             </Body>
@@ -78,7 +90,7 @@ class EditList extends Component {
         renderItem={this.renderFurrys}
         extraData={this.props}
         keyExtractor={item => item.key}
-        style={{ alignSelf: "stretch" }}
+        style={{ alignSelf: "stretch", backgroundColor: "#fff" }}
       />
     ) : (
       <Text style={{ textAlign: "center", marginTop: 30 }}>

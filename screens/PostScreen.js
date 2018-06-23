@@ -10,7 +10,12 @@ var t = require("tcomb-form-native")
 
 var Form = t.form.Form
 const stylesheet = _.cloneDeep(t.form.Form.stylesheet)
-stylesheet.textbox.normal.height = 100
+stylesheet.textbox.normal.fontSize = 14
+stylesheet.textbox.normal.fontWeight = "100"
+stylesheet.textbox.normal.color = "#343434"
+stylesheet.controlLabel.normal.fontSize = 18
+stylesheet.controlLabel.normal.fontWeight = "100"
+stylesheet.controlLabel.normal.color = "#343434"
 
 var Post = t.struct({
   petname: t.String,
@@ -25,15 +30,21 @@ var options = {
   fields: {
     petname: {
       label: "Pet Name",
-      placeholder: ""
+      placeholder: "",
+      stylesheet
     },
     location: {
       label: "Your location/city",
-      placeholder: "e.g San fransisco"
+      placeholder: "e.g San fransisco",
+      stylesheet
     },
     drop_duration: {
       label: "Drop Duration (Days)",
-      placeholder: "e.g 20"
+      placeholder: "e.g 20",
+      stylesheet
+    },
+    phone: {
+      stylesheet
     },
     description: {
       type: "textarea",
@@ -45,7 +56,8 @@ var options = {
     },
     token_amt: {
       label: "Token Amount",
-      placeholder: "e.g 20"
+      placeholder: "e.g 20",
+      stylesheet
     }
   }
 }
@@ -53,7 +65,11 @@ var options = {
 export default class PostScreen extends React.Component {
   static navigationOptions = {
     title: "Post",
-    headerTitle: "Post"
+    headerTitleStyle: {
+      fontSize: 25,
+      fontWeight: "100",
+      color: "#343434"
+    }
   }
 
   state = {
@@ -63,8 +79,8 @@ export default class PostScreen extends React.Component {
     countryID: null
   }
 
-  async componentDidMount() {
-    let { uid } = await firebase.auth().currentUser
+  async componentWillMount() {
+    let uid = await SecureStore.getItemAsync("userID")
     let countryID = await SecureStore.getItemAsync("countryID")
     this.setState({
       uid,
@@ -151,7 +167,12 @@ export default class PostScreen extends React.Component {
             />
           </View>
         </TouchableOpacity>
-
+        <Text
+          note
+          style={{ alignSelf: "center", marginBottom: 10, marginTop: 30 }}
+        >
+          Country is set to {this.state.countryID}
+        </Text>
         <Form ref="form" type={Post} options={options} />
         <Button
           block

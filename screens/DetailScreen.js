@@ -17,7 +17,9 @@ export default class DetailScreen extends Component {
       title: `${navigation.state.params.petname.toUpperCase()}`,
       tabBarVisible: false,
       headerTitleStyle: {
-        fontSize: 25
+        fontSize: 25,
+        fontWeight: "100",
+        color: "#343434"
       }
     }
   }
@@ -52,8 +54,8 @@ export default class DetailScreen extends Component {
           ) : (
             <ImageView
               source={{ uri: furryimage }}
-              imageWidth={750}
-              imageHeight={750}
+              imageWidth={"100%"}
+              imageHeight={"100%"}
               isVisible={this.state.isVisible}
               title={petname}
               onClose={() => this.setState({ isVisible: false })}
@@ -61,7 +63,7 @@ export default class DetailScreen extends Component {
           )}
         </TouchableOpacity>
         <View style={styles.body}>
-          <Text style={{ fontSize: 16 }}>{description}</Text>
+          <Text style={styles.textStyle}>{description}</Text>
           <View
             style={{
               borderTopColor: "#ccc",
@@ -74,11 +76,11 @@ export default class DetailScreen extends Component {
           />
           <View style={{ paddingBottom: 15 }}>
             <Ionicons name="ios-locate-outline" size={28} color="#000" />
-            <Text>{location}</Text>
+            <Text style={styles.textStyle}>{location}</Text>
           </View>
           <View style={{ paddingBottom: 15 }}>
             <Ionicons name="ios-calendar-outline" size={28} color="#000" />
-            <Text>{drop_duration} days</Text>
+            <Text style={styles.textStyle}>{drop_duration || "Null"} days</Text>
           </View>
           <View style={{ paddingBottom: 15 }}>
             <Ionicons
@@ -86,10 +88,10 @@ export default class DetailScreen extends Component {
               size={28}
               color="#000"
             />
-            <Text>{phone}</Text>
+            <Text style={styles.textStyle}>{phone}</Text>
           </View>
           <View>
-            <Text style={{ fontWeight: "bold" }}>
+            <Text style={styles.textStyle}>
               Owner is willing to pay {cid ? Country[cid].currency : ""}{" "}
               {token_amt}
             </Text>
@@ -110,5 +112,11 @@ const styles = StyleSheet.create({
     paddingTop: 30,
     paddingLeft: 15,
     paddingRight: 15
+  },
+  textStyle: {
+    fontSize: 16,
+    fontWeight: "100",
+    color: "#343434",
+    lineHeight: 25
   }
 })

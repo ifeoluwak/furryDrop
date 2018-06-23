@@ -1,73 +1,74 @@
-import React from 'react';
-import { Platform } from 'react-native';
-import { Ionicons } from '@expo/vector-icons';
-import { TabNavigator, TabBarBottom, StackNavigator } from 'react-navigation';
+import React from "react"
+import { Platform } from "react-native"
+import { Ionicons } from "@expo/vector-icons"
+import { TabNavigator, TabBarBottom, StackNavigator } from "react-navigation"
 
-import Colors from '../constants/Colors';
+import Colors from "../constants/Colors"
 
-import HomeScreen from '../screens/HomeScreen';
-import DetailScreen from '../screens/DetailScreen';
-import EditList from '../screens/EditList';
-import EditScreen from '../screens/EditScreen'
-import PostScreen from '../screens/PostScreen';
-
-
-
+import HomeScreen from "../screens/HomeScreen"
+import DetailScreen from "../screens/DetailScreen"
+import EditList from "../screens/EditList"
+import EditScreen from "../screens/EditScreen"
+import PostScreen from "../screens/PostScreen"
 
 export const EditStack = StackNavigator({
   EditList: {
-    screen: EditList,
+    screen: EditList
   },
   EditDetails: {
-    screen: EditScreen,
-    
-  }}, 
-);
+    screen: EditScreen
+  }
+})
 
 export const HomeStack = StackNavigator({
   Home: {
-    screen: HomeScreen,
+    screen: HomeScreen
   },
   Detail: {
-    screen: DetailScreen,
-  } 
-});
+    screen: DetailScreen
+  }
+})
 export const PostStack = StackNavigator({
   Post: {
-    screen: PostScreen,
-  } 
-});
+    screen: PostScreen
+  }
+})
 
 export default TabNavigator(
   {
     Furrys: {
-      screen: HomeStack,
+      screen: HomeStack
     },
     MyFurrys: {
-      screen: EditStack,
+      screen: EditStack
     },
     Post: {
-      screen: PostStack,
-    },
+      screen: PostStack
+    }
   },
   {
     navigationOptions: ({ navigation }) => ({
       tabBarIcon: ({ focused }) => {
-        const { routeName } = navigation.state;
-        let iconName;
+        const { routeName } = navigation.state
+        let iconName
         switch (routeName) {
-          case 'Furrys':
+          case "Furrys":
             iconName =
-              Platform.OS === 'ios'
-                ? `ios-information-circle${focused ? '' : '-outline'}`
-                : 'md-information-circle';
-            break;
-          case 'MyFurrys':
-            iconName = Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link';
-            break;
-          case 'Post':
+              Platform.OS === "ios"
+                ? `ios-home${focused ? "" : "-outline"}`
+                : "md-home"
+            break
+          case "MyFurrys":
             iconName =
-              Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options';
+              Platform.OS === "ios"
+                ? `ios-paw${focused ? "" : "-outline"}`
+                : "md-paw"
+            break
+          case "Post":
+            iconName =
+              Platform.OS === "ios"
+                ? `ios-create${focused ? "" : "-outline"}`
+                : "md-create"
         }
         return (
           <Ionicons
@@ -76,23 +77,22 @@ export default TabNavigator(
             style={{ marginBottom: -3 }}
             color={focused ? "#fff" : Colors.tabIconDefault}
           />
-        );
-      },
+        )
+      }
     }),
-    activeTintColor: '#000',
+    activeTintColor: "#000",
     tabBarComponent: TabBarBottom,
-    tabBarPosition: 'bottom',
+    tabBarPosition: "bottom",
     animationEnabled: false,
     swipeEnabled: false,
     tabBarOptions: {
-      activeTintColor: '#fff',
+      activeTintColor: "#fff",
       labelStyle: {
-        fontSize: 12,
+        fontSize: 12
       },
       style: {
-        backgroundColor: '#000',
-      },
+        backgroundColor: "#000"
+      }
     }
-    
   }
-);
+)

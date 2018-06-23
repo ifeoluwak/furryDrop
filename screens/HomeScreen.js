@@ -20,6 +20,7 @@ class HomeScreen extends React.Component {
     headerTitle: "FurryDrop",
     headerTitleStyle: {
       fontSize: 25,
+      fontWeight: "100",
       color: "#343434"
     }
     //headerRight: <Button onPress={()=>{}} title='' transparent><Icon name="md-more"/></Button>,

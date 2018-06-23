@@ -37,6 +37,7 @@ class RootNavigator extends React.Component {
     let countryID = SecureStore.getItemAsync("countryID")
     const uid = await userID
     const cid = await countryID
+    console.log(uid)
     if (uid && cid) {
       this.props.getFurrys(cid)
       this.props.getMyFurrys(uid)
