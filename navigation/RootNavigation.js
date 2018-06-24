@@ -6,7 +6,7 @@ import * as firebase from "firebase"
 import MainTabNavigator from "./MainTabNavigator"
 import Login from "../screens/LoginScreen"
 import Intro from "../screens/IntroScreen"
-import { GET_FURRYS, GET_MY_FURRYS } from "../Reducers/furry"
+import { GET_FURRYS, GET_MY_FURRYS, SET_COUNTRY } from "../Reducers/furry"
 
 const LoginStackNavigator = StackNavigator(
   {
@@ -37,9 +37,9 @@ class RootNavigator extends React.Component {
     let countryID = SecureStore.getItemAsync("countryID")
     const uid = await userID
     const cid = await countryID
-    console.log(uid)
     if (uid && cid) {
       this.props.getFurrys(cid)
+      this.props.setCountry(cid)
       this.props.getMyFurrys(uid)
       this.setState({ loggedIn: true })
     }
@@ -47,6 +47,7 @@ class RootNavigator extends React.Component {
     firebase.auth().onAuthStateChanged(user => {
       if (user != null) {
         SecureStore.setItemAsync("userID", user.uid)
+        this.props.setCountry(cid)
         this.props.getMyFurrys(user.uid)
         this.props.getFurrys(cid)
         this.setState({ loggedIn: true })
@@ -61,7 +62,8 @@ class RootNavigator extends React.Component {
 
 const mapDispatchToProps = dispatch => ({
   getFurrys: id => dispatch(GET_FURRYS(id)),
-  getMyFurrys: uid => dispatch(GET_MY_FURRYS(uid))
+  getMyFurrys: uid => dispatch(GET_MY_FURRYS(uid)),
+  setCountry: cid => dispatch(SET_COUNTRY(cid))
 })
 
 export default connect(

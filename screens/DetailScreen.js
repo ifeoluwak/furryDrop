@@ -54,8 +54,8 @@ export default class DetailScreen extends Component {
           ) : (
             <ImageView
               source={{ uri: furryimage }}
-              imageWidth={"100%"}
-              imageHeight={"100%"}
+              imageWidth={1000}
+              imageHeight={750}
               isVisible={this.state.isVisible}
               title={petname}
               onClose={() => this.setState({ isVisible: false })}
@@ -111,7 +111,8 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingTop: 30,
     paddingLeft: 15,
-    paddingRight: 15
+    paddingRight: 15,
+    paddingBottom: 20
   },
   textStyle: {
     fontSize: 16,

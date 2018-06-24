@@ -1,8 +1,15 @@
 import React from "react"
-import { View, StyleSheet, Image, TouchableOpacity } from "react-native"
-import { Button, Text, Icon, Spinner } from "native-base"
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view"
+import {
+  View,
+  Image,
+  TouchableOpacity,
+  Text,
+  ScrollView,
+  KeyboardAvoidingView
+} from "react-native"
+import { Button, Icon, Spinner } from "native-base"
 import { ImagePicker, SecureStore } from "expo"
+import { connect } from "react-redux"
 import * as firebase from "firebase"
 import uploadToCloudinary from "../api/imageUpload"
 
@@ -62,7 +69,7 @@ var options = {
   }
 }
 
-export default class PostScreen extends React.Component {
+class PostScreen extends React.Component {
   static navigationOptions = {
     title: "Post",
     headerTitleStyle: {
@@ -75,16 +82,13 @@ export default class PostScreen extends React.Component {
   state = {
     image: null,
     uploading: false,
-    uid: null,
-    countryID: null
+    uid: null
   }
 
   async componentWillMount() {
     let uid = await SecureStore.getItemAsync("userID")
-    let countryID = await SecureStore.getItemAsync("countryID")
     this.setState({
-      uid,
-      countryID
+      uid
     })
 
     console.log(uid)
@@ -123,7 +127,7 @@ export default class PostScreen extends React.Component {
             updated_at: `${theTime}`,
             furryimage: img,
             created_at: `${theTime}`,
-            country: this.state.countryID
+            country: this.props.countryID
           })
           .then(response => console.log(response))
 
@@ -134,65 +138,91 @@ export default class PostScreen extends React.Component {
 
   render() {
     let { image } = this.state
+    console.log("fgirg")
     return (
-      <KeyboardAwareScrollView style={styles.container}>
-        <TouchableOpacity
-          onPress={() => this.pickImage()}
-          style={{ width: 200, alignSelf: "center" }}
+      <ScrollView
+        contentContainerStyle={{
+          flexGrow: 1,
+          backgroundColor: "#fff",
+          paddingHorizontal: 10
+        }}
+      >
+        <KeyboardAvoidingView
+          behavior={"padding"}
+          style={{ flex: 1 }}
+          // keyboardVerticalOffset={20}
         >
-          <View style={{ backgroundColor: "transparent" }}>
-            {this.state.image ? (
-              <Image
-                source={{ uri: image.uri }}
-                style={{
-                  width: 150,
-                  height: 150,
-                  borderRadius: 75,
-                  alignSelf: "center"
-                }}
+          <TouchableOpacity
+            onPress={() => this.pickImage()}
+            style={{ width: 200, alignSelf: "center" }}
+          >
+            <View style={{ backgroundColor: "transparent" }}>
+              {this.state.image ? (
+                <Image
+                  source={{ uri: image.uri }}
+                  style={{
+                    width: 150,
+                    height: 150,
+                    borderRadius: 75,
+                    alignSelf: "center"
+                  }}
+                />
+              ) : (
+                <View
+                  style={{
+                    backgroundColor: "grey",
+                    width: 200,
+                    height: 200,
+                    borderRadius: 100
+                  }}
+                />
+              )}
+              <Icon
+                name="md-camera"
+                style={{ position: "absolute", right: 10, bottom: -5 }}
               />
+            </View>
+          </TouchableOpacity>
+          <Text
+            note
+            style={{ alignSelf: "center", marginBottom: 10, marginTop: 30 }}
+          >
+            Country is set to {this.props.countryID || "US"}
+          </Text>
+          <Form ref="form" type={Post} options={options} />
+          <Button
+            block
+            rounded
+            dark
+            style={{ marginBottom: 25 }}
+            onPress={() => this.writeNewPost()}
+            underlayColor="#99d9f4"
+          >
+            {this.state.uploading ? (
+              <Spinner color="#fff" />
             ) : (
-              <View
-                style={{
-                  backgroundColor: "grey",
-                  width: 200,
-                  height: 200,
-                  borderRadius: 100
-                }}
-              />
+              <Text style={{ color: "#fff" }}>Save</Text>
             )}
-            <Icon
-              name="md-camera"
-              style={{ position: "absolute", right: 10, bottom: -5 }}
-            />
-          </View>
-        </TouchableOpacity>
-        <Text
-          note
-          style={{ alignSelf: "center", marginBottom: 10, marginTop: 30 }}
-        >
-          Country is set to {this.state.countryID}
-        </Text>
-        <Form ref="form" type={Post} options={options} />
-        <Button
-          block
-          rounded
-          dark
-          style={{ marginBottom: 25 }}
-          onPress={() => this.writeNewPost()}
-          underlayColor="#99d9f4"
-        >
-          {this.state.uploading ? <Spinner color="#fff" /> : <Text>Save</Text>}
-        </Button>
-      </KeyboardAwareScrollView>
+          </Button>
+        </KeyboardAvoidingView>
+      </ScrollView>
     )
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    padding: 15,
-    backgroundColor: "#fff"
-  }
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     padding: 15,
+//     backgroundColor: "#fff"
+//   }
+// })
+
+const mapStateToProps = state => ({
+  countryID: state.furrys.countryID
 })
+
+export default connect(
+  mapStateToProps,
+  null
+)(PostScreen)

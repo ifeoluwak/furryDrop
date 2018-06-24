@@ -9,9 +9,9 @@ import {
 } from "react-native"
 import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
-import { Icon, Picker, Button } from "native-base"
+import { Icon, Picker } from "native-base"
 import { SecureStore } from "expo"
-import { GET_FURRYS } from "../Reducers/furry"
+import { GET_FURRYS, SET_COUNTRY } from "../Reducers/furry"
 import Furry from "../components/Furry"
 import Country from "../constants/Country"
 
@@ -30,14 +30,15 @@ class HomeScreen extends React.Component {
     selected: ""
   }
 
-  async componentWillMount() {
-    let id = await SecureStore.getItemAsync("countryID")
-    this.setState({ selected: id || "US" })
+  async componentDidMount() {
+    console.log(this.props)
+    this.setState({ selected: this.props.countryID || "US" })
   }
 
   inputRefs = {}
 
   setCountry = val => {
+    this.props.SET_COUNTRY(val)
     SecureStore.setItemAsync("countryID", val)
   }
 
@@ -98,17 +99,17 @@ class HomeScreen extends React.Component {
                 }}
               >
                 <Text>No furry found!</Text>
-                <Button
-                  onPress={() => this.props.GET_FURRYS(this.state.selected)}
-                  style={{
-                    width: 100,
-                    alignSelf: "center",
-                    justifyContent: "center",
-                    marginTop: 20
-                  }}
-                >
-                  <Text>Try again</Text>
-                </Button>
+              </View>
+            }
+            ListFooterComponent={
+              <View
+                style={{
+                  flex: 1,
+                  alignItems: "center",
+                  justifyContent: "center"
+                }}
+              >
+                <Text>No more furry!</Text>
               </View>
             }
           />
@@ -143,13 +144,15 @@ const styles = StyleSheet.create({
 
 const mapStateToProps = state => ({
   furry: state.furrys.furrys,
-  loading: state.furrys.loading
+  loading: state.furrys.loading,
+  countryID: state.furrys.countryID
 })
 
 const mapDispatchToProps = dispatch =>
   bindActionCreators(
     {
-      GET_FURRYS
+      GET_FURRYS,
+      SET_COUNTRY
     },
     dispatch
   )

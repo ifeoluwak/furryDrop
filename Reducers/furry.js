@@ -6,9 +6,10 @@ export function _INIT() {
   }
 }
 
-export function _FAILED() {
+export function _SET_COUNTRY(data) {
   return {
-    type: "FAILED"
+    type: "SET_COUNTRY",
+    payload: data
   }
 }
 
@@ -24,6 +25,11 @@ export function _GET_MY_FURRYS(data) {
     type: "MY_FURRYS",
     payload: data
   }
+}
+
+export const SET_COUNTRY = (countryID = "US") => dispatch => {
+  console.log(countryID)
+  dispatch(_SET_COUNTRY(countryID))
 }
 
 export const GET_FURRYS = (countryID = "US") => dispatch => {
@@ -91,7 +97,8 @@ export const GET_MY_FURRYS = uid => dispatch => {
 const initialState = {
   furrys: [],
   myfurrys: [],
-  loading: false
+  loading: false,
+  countryID: ""
 }
 
 export function furrys(state = initialState, action) {
@@ -100,6 +107,11 @@ export function furrys(state = initialState, action) {
       return {
         ...state,
         loading: true
+      }
+    case "SET_COUNTRY":
+      return {
+        ...state,
+        countryID: action.payload
       }
     case "GET_FURRYS":
       return {
