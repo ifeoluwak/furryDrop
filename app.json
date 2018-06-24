@@ -14,6 +14,10 @@
       "resizeMode": "cover",
       "backgroundColor": "#000"
     },
+    "githubUrl": "https://github.com/ifeoluwak/furryDrop",
+    "facebookAppId": "169876030424097",
+    "facebookDisplayName": "furrydrop",
+    "facebookScheme": "fb169876030424097",
     "ios": {
       "supportsTablet": false
     }

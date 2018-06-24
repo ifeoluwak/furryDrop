@@ -31,7 +31,6 @@ class HomeScreen extends React.Component {
   }
 
   async componentDidMount() {
-    console.log(this.props)
     this.setState({ selected: this.props.countryID || "US" })
   }
 
@@ -57,7 +56,6 @@ class HomeScreen extends React.Component {
 
   render() {
     const cCode = Object.keys(Country)
-    console.log(this.props.furry)
     return (
       <View style={styles.container}>
         <Picker
