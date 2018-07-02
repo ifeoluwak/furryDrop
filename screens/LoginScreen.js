@@ -30,7 +30,7 @@ export default class Login extends Component {
 
       firebase
         .auth()
-        .signInWithCredential(credential)
+        .signInAndRetrieveDataWithCredential(credential)
         .catch(error => {
           Alert.alert(error)
         })

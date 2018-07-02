@@ -32,11 +32,11 @@ class RootNavigator extends React.Component {
   }
 
   async componentWillMount() {
-    // await SecureStore.deleteItemAsync("countryID")
+    console.log(firebase.auth().currentUser)
+    // await SecureStore.deleteItemAsync("userID")
     let userID = SecureStore.getItemAsync("userID")
     let countryID = SecureStore.getItemAsync("countryID")
-    const uid = await userID
-    const cid = await countryID
+    const [uid, cid] = await Promise.all([userID, countryID])
     if (uid && cid) {
       this.props.getFurrys(cid)
       this.props.setCountry(cid)
@@ -51,12 +51,25 @@ class RootNavigator extends React.Component {
         this.props.getMyFurrys(user.uid)
         this.props.getFurrys(cid)
         this.setState({ loggedIn: true })
+        console.log("fff")
+      } else {
+        console.log("no user")
+        this.setState({ loggedIn: false })
       }
     })
   }
 
+  LOGOUT = async () => {
+    await SecureStore.deleteItemAsync("userID")
+    firebase.auth().signOut()
+  }
+
   render() {
-    return this.state.loggedIn ? <MainTabNavigator /> : <LoginStackNavigator />
+    return this.state.loggedIn ? (
+      <MainTabNavigator screenProps={{ logout: this.LOGOUT }} />
+    ) : (
+      <LoginStackNavigator />
+    )
   }
 }
 

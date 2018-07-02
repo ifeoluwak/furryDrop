@@ -1,5 +1,12 @@
 import React, { Component } from "react"
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native"
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  TouchableOpacity,
+  Platform
+} from "react-native"
 import Swiper from "react-native-swiper"
 
 var slide1 = require("../assets/images/slide1.jpeg")
@@ -55,7 +62,7 @@ var styles = StyleSheet.create({
   texttop: {
     color: "#fff",
     lineHeight: 60,
-    fontSize: 32,
+    fontSize: Platform.OS === "ios" ? 32 : 26,
     fontWeight: "bold",
     position: "absolute",
     top: 30

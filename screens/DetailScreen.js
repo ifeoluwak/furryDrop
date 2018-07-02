@@ -74,15 +74,15 @@ export default class DetailScreen extends Component {
               width: 200
             }}
           />
-          <View style={{ paddingBottom: 15 }}>
+          <View style={styles.item}>
             <Ionicons name="ios-locate-outline" size={28} color="#000" />
             <Text style={styles.textStyle}>{location}</Text>
           </View>
-          <View style={{ paddingBottom: 15 }}>
+          <View style={styles.item}>
             <Ionicons name="ios-calendar-outline" size={28} color="#000" />
             <Text style={styles.textStyle}>{drop_duration || "Null"} days</Text>
           </View>
-          <View style={{ paddingBottom: 15 }}>
+          <View style={styles.item}>
             <Ionicons
               name="ios-phone-portrait-outline"
               size={28}
@@ -119,5 +119,8 @@ const styles = StyleSheet.create({
     fontWeight: "100",
     color: "#343434",
     lineHeight: 25
+  },
+  item: {
+    paddingBottom: 15
   }
 })

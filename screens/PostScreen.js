@@ -8,7 +8,7 @@ import {
   KeyboardAvoidingView
 } from "react-native"
 import { Button, Icon, Spinner } from "native-base"
-import { ImagePicker, SecureStore } from "expo"
+import { ImagePicker, SecureStore, Permissions } from "expo"
 import { connect } from "react-redux"
 import * as firebase from "firebase"
 import uploadToCloudinary from "../api/imageUpload"
@@ -95,14 +95,18 @@ class PostScreen extends React.Component {
   }
 
   pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      allowsEditing: true,
-      aspect: [4, 3],
-      base64: true
-    })
+    const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL)
 
-    if (!result.cancelled) {
-      this.setState({ image: result })
+    if (status === "granted") {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        allowsEditing: true,
+        aspect: [4, 3],
+        base64: true
+      })
+
+      if (!result.cancelled) {
+        this.setState({ image: result })
+      }
     }
   }
 
@@ -149,8 +153,9 @@ class PostScreen extends React.Component {
       >
         <KeyboardAvoidingView
           behavior={"padding"}
+          // keyboardVerticalOffset={-20}
+          enabled
           style={{ flex: 1 }}
-          // keyboardVerticalOffset={20}
         >
           <TouchableOpacity
             onPress={() => this.pickImage()}

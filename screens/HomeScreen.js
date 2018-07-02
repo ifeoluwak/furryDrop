@@ -5,25 +5,32 @@ import {
   StyleSheet,
   View,
   Text,
-  ActivityIndicator
+  ActivityIndicator,
+  Platform
 } from "react-native"
 import { bindActionCreators } from "redux"
 import { connect } from "react-redux"
-import { Icon, Picker } from "native-base"
+import { Icon, Picker, Button } from "native-base"
 import { SecureStore } from "expo"
 import { GET_FURRYS, SET_COUNTRY } from "../Reducers/furry"
 import Furry from "../components/Furry"
 import Country from "../constants/Country"
 
 class HomeScreen extends React.Component {
-  static navigationOptions = {
-    headerTitle: "FurryDrop",
-    headerTitleStyle: {
-      fontSize: 25,
-      fontWeight: "100",
-      color: "#343434"
+  static navigationOptions = ({ screenProps }) => {
+    return {
+      headerTitle: "FurryDrop",
+      headerTitleStyle: {
+        fontSize: 25,
+        fontWeight: "100",
+        color: "#343434"
+      },
+      headerRight: (
+        <Button onPress={() => screenProps.logout()} title="" transparent>
+          <Icon name={Platform.OS === "ios" ? "ios-power" : "md-power"} />
+        </Button>
+      )
     }
-    //headerRight: <Button onPress={()=>{}} title='' transparent><Icon name="md-more"/></Button>,
   }
 
   state = {

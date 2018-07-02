@@ -8,7 +8,7 @@ import {
   KeyboardAvoidingView
 } from "react-native"
 import { Button, Icon, Spinner } from "native-base"
-import { ImagePicker } from "expo"
+import { ImagePicker, Permissions } from "expo"
 import * as firebase from "firebase"
 import uploadToCloudinary from "../api/imageUpload"
 
@@ -127,14 +127,18 @@ export default class EditScreen extends React.Component {
   }
 
   pickImage = async () => {
-    let result = await ImagePicker.launchImageLibraryAsync({
-      allowsEditing: true,
-      aspect: [4, 3],
-      base64: true
-    })
+    const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL)
 
-    if (!result.cancelled) {
-      this.setState({ pickImaged: result })
+    if (status === "granted") {
+      let result = await ImagePicker.launchImageLibraryAsync({
+        allowsEditing: true,
+        aspect: [4, 3],
+        base64: true
+      })
+
+      if (!result.cancelled) {
+        this.setState({ pickImaged: result })
+      }
     }
   }
 
@@ -151,6 +155,7 @@ export default class EditScreen extends React.Component {
       >
         <KeyboardAvoidingView
           behavior={"padding"}
+          enabled
           style={{ flex: 1 }}
           // keyboardVerticalOffset={20}
         >
