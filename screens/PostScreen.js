@@ -133,7 +133,7 @@ class PostScreen extends React.Component {
             created_at: `${theTime}`,
             country: this.props.countryID
           })
-          .then(response => console.log(response))
+          .then(() => this.setState({ formValue: {} }))
 
         this.setState({ uploading: false, image: null })
       }
@@ -153,7 +153,7 @@ class PostScreen extends React.Component {
       >
         <KeyboardAvoidingView
           behavior={"padding"}
-          // keyboardVerticalOffset={-20}
+          keyboardVerticalOffset={-20}
           enabled
           style={{ flex: 1 }}
         >
@@ -194,7 +194,13 @@ class PostScreen extends React.Component {
           >
             Country is set to {this.props.countryID || "US"}
           </Text>
-          <Form ref="form" type={Post} options={options} />
+          <Form
+            ref="form"
+            type={Post}
+            options={options}
+            value={this.state.formValue}
+            onChange={formValue => this.setState({ formValue })}
+          />
           <Button
             block
             rounded

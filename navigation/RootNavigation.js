@@ -32,7 +32,6 @@ class RootNavigator extends React.Component {
   }
 
   async componentWillMount() {
-    console.log(firebase.auth().currentUser)
     // await SecureStore.deleteItemAsync("userID")
     let userID = SecureStore.getItemAsync("userID")
     let countryID = SecureStore.getItemAsync("countryID")
@@ -51,9 +50,7 @@ class RootNavigator extends React.Component {
         this.props.getMyFurrys(user.uid)
         this.props.getFurrys(cid)
         this.setState({ loggedIn: true })
-        console.log("fff")
       } else {
-        console.log("no user")
         this.setState({ loggedIn: false })
       }
     })

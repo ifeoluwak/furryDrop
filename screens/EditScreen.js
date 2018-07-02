@@ -84,7 +84,8 @@ export default class EditScreen extends React.Component {
   state = {
     image: this.props.navigation.state.params.furryimage,
     pickImaged: null,
-    uploading: false
+    uploading: false,
+    formValue: this.props.navigation.state.params
   }
 
   onPress = async () => {
@@ -143,7 +144,6 @@ export default class EditScreen extends React.Component {
   }
 
   render() {
-    const value = this.props.navigation.state.params
     let { image, pickImaged } = this.state
     return (
       <ScrollView
@@ -183,9 +183,15 @@ export default class EditScreen extends React.Component {
             note
             style={{ alignSelf: "center", marginBottom: 10, marginTop: 30 }}
           >
-            Country is set to {value.country}
+            Country is set to {this.state.formValue.country}
           </Text>
-          <Form ref="form" type={Post} options={options} value={value} />
+          <Form
+            ref="form"
+            type={Post}
+            options={options}
+            value={this.state.formValue}
+            onChange={formValue => this.setState({ formValue })}
+          />
           <Button
             block
             rounded

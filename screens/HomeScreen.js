@@ -27,7 +27,10 @@ class HomeScreen extends React.Component {
       },
       headerRight: (
         <Button onPress={() => screenProps.logout()} title="" transparent>
-          <Icon name={Platform.OS === "ios" ? "ios-power" : "md-power"} />
+          <Icon
+            color="#343434"
+            name={Platform.OS === "ios" ? "ios-power" : "md-power"}
+          />
         </Button>
       )
     }
@@ -91,7 +94,7 @@ class HomeScreen extends React.Component {
         </Picker>
         {!this.props.loading ? (
           <FlatList
-            data={this.props.furry}
+            data={this.props.furrys}
             renderItem={this.renderFurrys}
             style={{ alignSelf: "stretch", marginTop: 5 }}
             action={this.goToDetail}
@@ -119,7 +122,7 @@ class HomeScreen extends React.Component {
             }
           />
         ) : (
-          <ActivityIndicator color="red" size="large" />
+          <ActivityIndicator size="large" />
         )}
       </View>
     )
@@ -148,7 +151,7 @@ const styles = StyleSheet.create({
 })
 
 const mapStateToProps = state => ({
-  furry: state.furrys.furrys,
+  furrys: state.furrys.furrys,
   loading: state.furrys.loading,
   countryID: state.furrys.countryID
 })

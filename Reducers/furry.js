@@ -28,12 +28,10 @@ export function _GET_MY_FURRYS(data) {
 }
 
 export const SET_COUNTRY = (countryID = "US") => dispatch => {
-  console.log(countryID)
   dispatch(_SET_COUNTRY(countryID))
 }
 
 export const GET_FURRYS = (countryID = "US") => dispatch => {
-  console.log(countryID)
   dispatch(_INIT())
   try {
     firebase
@@ -44,10 +42,9 @@ export const GET_FURRYS = (countryID = "US") => dispatch => {
       .limitToLast(35)
       .on("value", function(snapshot) {
         var items = []
+
         snapshot.forEach(item => {
-          const data = item.val()
-          data["key"] = item.key
-          items.push(data)
+          items.push({ ...item.val(), key: item.key })
         })
         dispatch(_GET_FURRYS(items))
       })
@@ -88,7 +85,6 @@ export const GET_MY_FURRYS = uid => dispatch => {
 
       snapshot.forEach(item => {
         items.unshift({ ...item.val(), key: item.key })
-        //console.log(item.key)
       })
       dispatch(_GET_MY_FURRYS(items))
     })

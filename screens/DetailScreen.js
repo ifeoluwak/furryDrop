@@ -41,6 +41,7 @@ export default class DetailScreen extends Component {
       petname,
       phone,
       token_amt,
+      updated_at,
       cid
     } = this.props.navigation.state.params
     return (
@@ -70,10 +71,11 @@ export default class DetailScreen extends Component {
               borderWidth: 0.5,
               alignSelf: "center",
               marginTop: 30,
-              marginBottom: 30,
+              marginBottom: 15,
               width: 200
             }}
           />
+          <Text style={styles.date}>{updated_at.substring(4, 21)}</Text>
           <View style={styles.item}>
             <Ionicons name="ios-locate-outline" size={28} color="#000" />
             <Text style={styles.textStyle}>{location}</Text>
@@ -119,6 +121,15 @@ const styles = StyleSheet.create({
     fontWeight: "100",
     color: "#343434",
     lineHeight: 25
+  },
+  date: {
+    fontSize: 13,
+    fontWeight: "100",
+    color: "#343434",
+    lineHeight: 20,
+    alignSelf: "center",
+    marginBottom: 15,
+    fontStyle: "italic"
   },
   item: {
     paddingBottom: 15

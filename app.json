@@ -19,7 +19,11 @@
     "facebookDisplayName": "furrydrop",
     "facebookScheme": "fb169876030424097",
     "ios": {
-      "supportsTablet": false
+      "supportsTablet": false,
+      "bundleIdentifier": "com.ifeoluwaking24.furrydrop"
+    },
+    "android": {
+      "package": "com.ifeoluwaking24.furrydrop"
     }
   }
 }
