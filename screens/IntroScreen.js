@@ -61,7 +61,7 @@ var styles = StyleSheet.create({
   },
   texttop: {
     color: "#fff",
-    lineHeight: 60,
+    lineHeight: Platform.OS === "ios" ? 60 : 40,
     fontSize: Platform.OS === "ios" ? 32 : 26,
     fontWeight: "bold",
     position: "absolute",
