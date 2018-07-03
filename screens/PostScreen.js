@@ -142,7 +142,6 @@ class PostScreen extends React.Component {
 
   render() {
     let { image } = this.state
-    console.log("fgirg")
     return (
       <ScrollView
         contentContainerStyle={{

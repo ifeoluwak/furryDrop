@@ -1,6 +1,6 @@
 import React from "react"
 import { StatusBar, StyleSheet, View } from "react-native"
-import { AppLoading, Asset, Font } from "expo"
+import { AppLoading, Asset, Font, SecureStore } from "expo"
 import { Ionicons } from "@expo/vector-icons"
 import { Provider } from "react-redux"
 import * as firebase from "firebase"
@@ -71,7 +71,8 @@ export default class App extends React.Component {
     console.warn(error)
   }
 
-  _handleFinishLoading = () => {
+  _handleFinishLoading = async () => {
+    await SecureStore.setItemAsync("countryID", "US")
     this.setState({ isLoadingComplete: true })
   }
 }

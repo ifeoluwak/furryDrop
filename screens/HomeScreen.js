@@ -37,11 +37,7 @@ class HomeScreen extends React.Component {
   }
 
   state = {
-    selected: ""
-  }
-
-  async componentDidMount() {
-    this.setState({ selected: this.props.countryID || "US" })
+    selected: this.props.countryID || "US"
   }
 
   inputRefs = {}
