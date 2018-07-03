@@ -28,8 +28,8 @@ class HomeScreen extends React.Component {
       headerRight: (
         <Button onPress={() => screenProps.logout()} title="" transparent>
           <Icon
-            color="#343434"
             name={Platform.OS === "ios" ? "ios-power" : "md-power"}
+            style={{ color: "#343434" }}
           />
         </Button>
       )

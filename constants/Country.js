@@ -14,16 +14,6 @@ export default {
     currency: "AFN",
     name: "Afghanistan"
   },
-  AG: {
-    callingCode: "1268",
-    currency: "XCD",
-    name: "Antigua and Barbuda"
-  },
-  AI: {
-    callingCode: "1264",
-    currency: "XCD",
-    name: "Anguilla"
-  },
   AL: {
     callingCode: "355",
     currency: "ALL",
@@ -39,20 +29,10 @@ export default {
     currency: "AOA",
     name: "Angola"
   },
-  AQ: {
-    callingCode: undefined,
-    currency: undefined,
-    name: "Antarctica"
-  },
   AR: {
     callingCode: "54",
     currency: "ARS",
     name: "Argentina"
-  },
-  AS: {
-    callingCode: "1684",
-    currency: "USD",
-    name: "American Samoa"
   },
   AT: {
     callingCode: "43",
@@ -63,16 +43,6 @@ export default {
     callingCode: "61",
     currency: "AUD",
     name: "Australia"
-  },
-  AW: {
-    callingCode: "297",
-    currency: "AWG",
-    name: "Aruba"
-  },
-  AX: {
-    callingCode: "358",
-    currency: "EUR",
-    name: "Åland Islands"
   },
   AZ: {
     callingCode: "994",
@@ -124,16 +94,6 @@ export default {
     currency: "XOF",
     name: "Benin"
   },
-  BL: {
-    callingCode: "590",
-    currency: "EUR",
-    name: "Saint Barthélemy"
-  },
-  BM: {
-    callingCode: "1441",
-    currency: "BMD",
-    name: "Bermuda"
-  },
   BN: {
     callingCode: "673",
     currency: "BND",
@@ -159,11 +119,6 @@ export default {
     currency: "BTN",
     name: "Bhutan"
   },
-  BV: {
-    callingCode: undefined,
-    currency: "NOK",
-    name: "Bouvet Island"
-  },
   BW: {
     callingCode: "267",
     currency: "BWP",
@@ -183,11 +138,6 @@ export default {
     callingCode: "1",
     currency: "CAD",
     name: "Canada"
-  },
-  CC: {
-    callingCode: "61",
-    currency: "AUD",
-    name: "Cocos (Keeling) Islands"
   },
   CD: {
     callingCode: "243",
@@ -213,11 +163,6 @@ export default {
     callingCode: "225",
     currency: "XOF",
     name: "Ivory Coast"
-  },
-  CK: {
-    callingCode: "682",
-    currency: "NZD",
-    name: "Cook Islands"
   },
   CL: {
     callingCode: "56",
@@ -254,16 +199,6 @@ export default {
     currency: "CVE",
     name: "Cape Verde"
   },
-  CW: {
-    callingCode: "5999",
-    currency: "ANG",
-    name: "Curaçao"
-  },
-  CX: {
-    callingCode: "61",
-    currency: "AUD",
-    name: "Christmas Island"
-  },
   CY: {
     callingCode: "357",
     currency: "EUR",
@@ -289,11 +224,6 @@ export default {
     currency: "DKK",
     name: "Denmark"
   },
-  DM: {
-    callingCode: "1767",
-    currency: "XCD",
-    name: "Dominica"
-  },
   DO: {
     callingCode: "1809",
     currency: "DOP",
@@ -318,11 +248,6 @@ export default {
     callingCode: "20",
     currency: "EGP",
     name: "Egypt"
-  },
-  EH: {
-    callingCode: "212",
-    currency: "MAD",
-    name: "Western Sahara"
   },
   ER: {
     callingCode: "291",
@@ -354,16 +279,6 @@ export default {
     currency: "FKP",
     name: "Falkland Islands"
   },
-  FM: {
-    callingCode: "691",
-    currency: "USD",
-    name: "Micronesia"
-  },
-  FO: {
-    callingCode: "298",
-    currency: "DKK",
-    name: "Faroe Islands"
-  },
   FR: {
     callingCode: "33",
     currency: "EUR",
@@ -388,16 +303,6 @@ export default {
     callingCode: "995",
     currency: "GEL",
     name: "Georgia"
-  },
-  GF: {
-    callingCode: "594",
-    currency: "EUR",
-    name: "French Guiana"
-  },
-  GG: {
-    callingCode: "44",
-    currency: "GBP",
-    name: "Guernsey"
   },
   GH: {
     callingCode: "233",
@@ -439,11 +344,6 @@ export default {
     currency: "EUR",
     name: "Greece"
   },
-  GS: {
-    callingCode: "500",
-    currency: "GBP",
-    name: "South Georgia"
-  },
   GT: {
     callingCode: "502",
     currency: "GTQ",
@@ -468,11 +368,6 @@ export default {
     callingCode: "852",
     currency: "HKD",
     name: "Hong Kong"
-  },
-  HM: {
-    callingCode: undefined,
-    currency: "AUD",
-    name: "Heard Island and McDonald Islands"
   },
   HN: {
     callingCode: "504",
@@ -509,20 +404,10 @@ export default {
     currency: "ILS",
     name: "Israel"
   },
-  IM: {
-    callingCode: "44",
-    currency: "GBP",
-    name: "Isle of Man"
-  },
   IN: {
     callingCode: "91",
     currency: "INR",
     name: "India"
-  },
-  IO: {
-    callingCode: "246",
-    currency: "USD",
-    name: "British Indian Ocean Territory"
   },
   IQ: {
     callingCode: "964",
@@ -543,11 +428,6 @@ export default {
     callingCode: "39",
     currency: "EUR",
     name: "Italy"
-  },
-  JE: {
-    callingCode: "44",
-    currency: "GBP",
-    name: "Jersey"
   },
   JM: {
     callingCode: "1876",
@@ -579,25 +459,10 @@ export default {
     currency: "KHR",
     name: "Cambodia"
   },
-  KI: {
-    callingCode: "686",
-    currency: "AUD",
-    name: "Kiribati"
-  },
   KM: {
     callingCode: "269",
     currency: "KMF",
     name: "Comoros"
-  },
-  KN: {
-    callingCode: "1869",
-    currency: "XCD",
-    name: "Saint Kitts and Nevis"
-  },
-  KP: {
-    callingCode: "850",
-    currency: "KPW",
-    name: "North Korea"
   },
   KR: {
     callingCode: "82",
@@ -628,11 +493,6 @@ export default {
     callingCode: "961",
     currency: "LBP",
     name: "Lebanon"
-  },
-  LC: {
-    callingCode: "1758",
-    currency: "XCD",
-    name: "Saint Lucia"
   },
   LI: {
     callingCode: "423",
@@ -694,11 +554,6 @@ export default {
     currency: "EUR",
     name: "Montenegro"
   },
-  MF: {
-    callingCode: "590",
-    currency: "EUR",
-    name: "Saint Martin"
-  },
   MG: {
     callingCode: "261",
     currency: "MGA",
@@ -734,25 +589,10 @@ export default {
     currency: "MOP",
     name: "Macau"
   },
-  MP: {
-    callingCode: "1670",
-    currency: "USD",
-    name: "Northern Mariana Islands"
-  },
-  MQ: {
-    callingCode: "596",
-    currency: "EUR",
-    name: "Martinique"
-  },
   MR: {
     callingCode: "222",
     currency: "MRO",
     name: "Mauritania"
-  },
-  MS: {
-    callingCode: "1664",
-    currency: "XCD",
-    name: "Montserrat"
   },
   MT: {
     callingCode: "356",
@@ -794,20 +634,10 @@ export default {
     currency: "NAD",
     name: "Namibia"
   },
-  NC: {
-    callingCode: "687",
-    currency: "XPF",
-    name: "New Caledonia"
-  },
   NE: {
     callingCode: "227",
     currency: "XOF",
     name: "Niger"
-  },
-  NF: {
-    callingCode: "672",
-    currency: "AUD",
-    name: "Norfolk Island"
   },
   NG: {
     callingCode: "234",
@@ -864,11 +694,6 @@ export default {
     currency: "PEN",
     name: "Peru"
   },
-  PF: {
-    callingCode: "689",
-    currency: "XPF",
-    name: "French Polynesia"
-  },
   PG: {
     callingCode: "675",
     currency: "PGK",
@@ -889,16 +714,6 @@ export default {
     currency: "PLN",
     name: "Poland"
   },
-  PM: {
-    callingCode: "508",
-    currency: "EUR",
-    name: "Saint Pierre and Miquelon"
-  },
-  PN: {
-    callingCode: "64",
-    currency: "NZD",
-    name: "Pitcairn Islands"
-  },
   PR: {
     callingCode: "1787",
     currency: "USD",
@@ -914,11 +729,6 @@ export default {
     currency: "EUR",
     name: "Portugal"
   },
-  PW: {
-    callingCode: "680",
-    currency: "USD",
-    name: "Palau"
-  },
   PY: {
     callingCode: "595",
     currency: "PYG",
@@ -928,11 +738,6 @@ export default {
     callingCode: "974",
     currency: "QAR",
     name: "Qatar"
-  },
-  RE: {
-    callingCode: "262",
-    currency: "EUR",
-    name: "Réunion"
   },
   RO: {
     callingCode: "40",
@@ -989,11 +794,6 @@ export default {
     currency: "EUR",
     name: "Slovenia"
   },
-  SJ: {
-    callingCode: "4779",
-    currency: "NOK",
-    name: "Svalbard and Jan Mayen"
-  },
   SK: {
     callingCode: "421",
     currency: "EUR",
@@ -1004,11 +804,6 @@ export default {
     currency: "SLL",
     name: "Sierra Leone"
   },
-  SM: {
-    callingCode: "378",
-    currency: "EUR",
-    name: "San Marino"
-  },
   SN: {
     callingCode: "221",
     currency: "XOF",
@@ -1018,11 +813,6 @@ export default {
     callingCode: "252",
     currency: "SOS",
     name: "Somalia"
-  },
-  SR: {
-    callingCode: "597",
-    currency: "SRD",
-    name: "Suriname"
   },
   SS: {
     callingCode: "211",
@@ -1039,11 +829,6 @@ export default {
     currency: "SVC",
     name: "El Salvador"
   },
-  SX: {
-    callingCode: "1721",
-    currency: "ANG",
-    name: "Sint Maarten"
-  },
   SY: {
     callingCode: "963",
     currency: "SYP",
@@ -1054,20 +839,10 @@ export default {
     currency: "SZL",
     name: "Swaziland"
   },
-  TC: {
-    callingCode: "1649",
-    currency: "USD",
-    name: "Turks and Caicos Islands"
-  },
   TD: {
     callingCode: "235",
     currency: "XAF",
     name: "Chad"
-  },
-  TF: {
-    callingCode: undefined,
-    currency: "EUR",
-    name: "French Southern and Antarctic Lands"
   },
   TG: {
     callingCode: "228",
@@ -1079,21 +854,6 @@ export default {
     currency: "THB",
     name: "Thailand"
   },
-  TJ: {
-    callingCode: "992",
-    currency: "TJS",
-    name: "Tajikistan"
-  },
-  TK: {
-    callingCode: "690",
-    currency: "NZD",
-    name: "Tokelau"
-  },
-  TL: {
-    callingCode: "670",
-    currency: "USD",
-    name: "Timor-Leste"
-  },
   TM: {
     callingCode: "993",
     currency: "TMT",
@@ -1104,11 +864,6 @@ export default {
     currency: "TND",
     name: "Tunisia"
   },
-  TO: {
-    callingCode: "676",
-    currency: "TOP",
-    name: "Tonga"
-  },
   TR: {
     callingCode: "90",
     currency: "TRY",
@@ -1118,11 +873,6 @@ export default {
     callingCode: "1868",
     currency: "TTD",
     name: "Trinidad and Tobago"
-  },
-  TV: {
-    callingCode: "688",
-    currency: "AUD",
-    name: "Tuvalu"
   },
   TW: {
     callingCode: "886",
@@ -1144,11 +894,6 @@ export default {
     currency: "UGX",
     name: "Uganda"
   },
-  UM: {
-    callingCode: undefined,
-    currency: "USD",
-    name: "United States Minor Outlying Islands"
-  },
   US: {
     callingCode: "1",
     currency: "USD",
@@ -1159,55 +904,20 @@ export default {
     currency: "UYI",
     name: "Uruguay"
   },
-  UZ: {
-    callingCode: "998",
-    currency: "UZS",
-    name: "Uzbekistan"
-  },
   VA: {
     callingCode: "3906698",
     currency: "EUR",
     name: "Vatican City"
-  },
-  VC: {
-    callingCode: "1784",
-    currency: "XCD",
-    name: "Saint Vincent and the Grenadines"
   },
   VE: {
     callingCode: "58",
     currency: "VEF",
     name: "Venezuela"
   },
-  VG: {
-    callingCode: "1284",
-    currency: "USD",
-    name: "British Virgin Islands"
-  },
-  VI: {
-    callingCode: "1340",
-    currency: "USD",
-    name: "United States Virgin Islands"
-  },
   VN: {
     callingCode: "84",
     currency: "VND",
     name: "Vietnam"
-  },
-  VU: {
-    callingCode: "678",
-    currency: "VUV",
-    name: "Vanuatu"
-  },
-  WF: {
-    callingCode: "681",
-    currency: "XPF",
-    name: "Wallis and Futuna"
-  },
-  WS: {
-    callingCode: "685",
-    currency: "WST",
-    name: "Samoa"
   },
   XK: {
     callingCode: "383",
@@ -1218,11 +928,6 @@ export default {
     callingCode: "967",
     currency: "YER",
     name: "Yemen"
-  },
-  YT: {
-    callingCode: "262",
-    currency: "EUR",
-    name: "Mayotte"
   },
   ZA: {
     callingCode: "27",
