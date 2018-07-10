@@ -27,11 +27,11 @@ export function _GET_MY_FURRYS(data) {
   }
 }
 
-export const SET_COUNTRY = (countryID = "US") => dispatch => {
+export const SET_COUNTRY = countryID => dispatch => {
   dispatch(_SET_COUNTRY(countryID))
 }
 
-export const GET_FURRYS = (countryID = "US") => dispatch => {
+export const GET_FURRYS = countryID => dispatch => {
   dispatch(_INIT())
   try {
     firebase

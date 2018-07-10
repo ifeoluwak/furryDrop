@@ -45,6 +45,10 @@ export default class App extends React.Component {
   }
 
   _loadResourcesAsync = async () => {
+    const cntry = await SecureStore.getItemAsync("countryID")
+    if (!cntry) {
+      await SecureStore.setItemAsync("countryID", "US")
+    }
     return Promise.all([
       Asset.loadAsync([
         require("./assets/images/dog.png"),
@@ -71,8 +75,7 @@ export default class App extends React.Component {
     console.warn(error)
   }
 
-  _handleFinishLoading = async () => {
-    await SecureStore.setItemAsync("countryID", "US")
+  _handleFinishLoading = () => {
     this.setState({ isLoadingComplete: true })
   }
 }
